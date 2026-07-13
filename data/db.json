@@ -1,0 +1,1238 @@
+{
+  "users": [
+    {
+      "email": "admin@aicte.gov.in",
+      "password": "Password123",
+      "role": "evaluator",
+      "org": "AICTE Central Board"
+    },
+    {
+      "email": "admin@mit.edu",
+      "password": "Password123",
+      "role": "institution",
+      "org": "MIT Engineering College"
+    },
+    {
+      "email": "director@abc.edu",
+      "password": "Password123",
+      "role": "institution",
+      "org": "ABC Engineering College"
+    },
+    {
+      "email": "VSB@CLG",
+      "password": "VSB@3660",
+      "org": "vsb engineering ",
+      "role": "evaluator"
+    }
+  ],
+  "institutions": [
+    {
+      "email": "admin@mit.edu",
+      "name": "MIT Engineering College",
+      "shortName": "MITEC",
+      "type": "Engineering",
+      "established": 1998,
+      "affiliation": "Anna University",
+      "autonomyStatus": "Autonomous",
+      "naacGrade": "A+",
+      "naacScore": "3.62",
+      "nbaAccredited": true,
+      "nirfRank": 48,
+      "address": {
+        "street": "12, MIT Campus Road, Chromepet",
+        "city": "Chennai",
+        "state": "Tamil Nadu",
+        "pincode": "600044",
+        "region": "South"
+      },
+      "contact": {
+        "phone": "+91-44-2256-1000",
+        "altPhone": "+91-44-2256-1001",
+        "fax": "+91-44-2256-1002",
+        "email": "admin@mit.edu",
+        "website": "www.mitcollege.edu.in",
+        "principalName": "Dr. R. Krishnamurthy",
+        "principalPhone": "+91-98765-43210",
+        "principalEmail": "principal@mit.edu"
+      },
+      "infrastructure": {
+        "totalLand": "12 Acres",
+        "builtUpArea": "45,000 sq m",
+        "classrooms": 48,
+        "tutorialRooms": 12,
+        "drawingHalls": 4,
+        "computerLabs": 8,
+        "engineeringLabs": 16,
+        "researchLabs": 6,
+        "librarySeats": 500,
+        "libraryBooks": 45000,
+        "eJournals": 12000,
+        "hostelBoys": 600,
+        "hostelGirls": 400,
+        "sportsGround": true,
+        "indoorSports": true,
+        "cafeteria": true,
+        "medicalRoom": true,
+        "auditoriumCapacity": 1200,
+        "seminarHalls": 8,
+        "conferenceRooms": 4,
+        "workshopArea": "2,400 sq m",
+        "generatorBackup": "2 x 500 KVA",
+        "internetBandwidth": "1 Gbps",
+        "cctvCount": 240
+      },
+      "programs": [
+        {
+          "code": "CSE",
+          "name": "B.Tech Computer Science & Engineering",
+          "intake": 120,
+          "duration": "4 Years",
+          "annualFee": 85000,
+          "approvalStatus": "approved",
+          "approvedYear": 2001
+        },
+        {
+          "code": "ECE",
+          "name": "B.Tech Electronics & Communication Engg.",
+          "intake": 60,
+          "duration": "4 Years",
+          "annualFee": 80000,
+          "approvalStatus": "approved",
+          "approvedYear": 2001
+        },
+        {
+          "code": "MECH",
+          "name": "B.Tech Mechanical Engineering",
+          "intake": 60,
+          "duration": "4 Years",
+          "annualFee": 75000,
+          "approvalStatus": "approved",
+          "approvedYear": 2003
+        },
+        {
+          "code": "CIVIL",
+          "name": "B.Tech Civil Engineering",
+          "intake": 60,
+          "duration": "4 Years",
+          "annualFee": 72000,
+          "approvalStatus": "approved",
+          "approvedYear": 2005
+        },
+        {
+          "code": "EEE",
+          "name": "B.Tech Electrical & Electronics Engg.",
+          "intake": 60,
+          "duration": "4 Years",
+          "annualFee": 78000,
+          "approvalStatus": "approved",
+          "approvedYear": 2007
+        },
+        {
+          "code": "IT",
+          "name": "B.Tech Information Technology",
+          "intake": 60,
+          "duration": "4 Years",
+          "annualFee": 82000,
+          "approvalStatus": "approved",
+          "approvedYear": 2009
+        },
+        {
+          "code": "AIDS",
+          "name": "B.Tech AI & Data Science",
+          "intake": 60,
+          "duration": "4 Years",
+          "annualFee": 95000,
+          "approvalStatus": "approved",
+          "approvedYear": 2021
+        },
+        {
+          "code": "MCS",
+          "name": "M.Tech Computer Science & Engineering",
+          "intake": 24,
+          "duration": "2 Years",
+          "annualFee": 95000,
+          "approvalStatus": "approved",
+          "approvedYear": 2010
+        },
+        {
+          "code": "MBA",
+          "name": "Master of Business Administration",
+          "intake": 60,
+          "duration": "2 Years",
+          "annualFee": 90000,
+          "approvalStatus": "pending",
+          "approvedYear": 2026
+        }
+      ],
+      "faculty": [
+        {
+          "name": "Dr. R. Krishnamurthy",
+          "designation": "Principal",
+          "department": "Administration",
+          "qualification": "Ph.D. Computer Science",
+          "experience": "28 Years",
+          "publications": 45
+        },
+        {
+          "name": "Dr. Ananya Sen",
+          "designation": "HOD & Professor",
+          "department": "CSE",
+          "qualification": "Ph.D. AI & Machine Learning",
+          "experience": "18 Years",
+          "publications": 32
+        },
+        {
+          "name": "Dr. Rajesh Sharma",
+          "designation": "Professor",
+          "department": "ECE",
+          "qualification": "Ph.D. VLSI Design",
+          "experience": "15 Years",
+          "publications": 28
+        },
+        {
+          "name": "Dr. Priya Venkat",
+          "designation": "Associate Professor",
+          "department": "MECH",
+          "qualification": "Ph.D. Thermal Engineering",
+          "experience": "12 Years",
+          "publications": 19
+        },
+        {
+          "name": "Prof. Karthik Rajan",
+          "designation": "Assistant Professor",
+          "department": "CSE",
+          "qualification": "M.Tech Networks",
+          "experience": "8 Years",
+          "publications": 11
+        },
+        {
+          "name": "Dr. Sunita Iyer",
+          "designation": "Professor",
+          "department": "CIVIL",
+          "qualification": "Ph.D. Structural Engineering",
+          "experience": "20 Years",
+          "publications": 36
+        },
+        {
+          "name": "Prof. Mohan Das",
+          "designation": "Assistant Professor",
+          "department": "EEE",
+          "qualification": "M.Tech Power Systems",
+          "experience": "6 Years",
+          "publications": 7
+        },
+        {
+          "name": "Dr. Deepa Nair",
+          "designation": "Associate Professor",
+          "department": "IT",
+          "qualification": "Ph.D. Cyber Security",
+          "experience": "14 Years",
+          "publications": 22
+        },
+        {
+          "name": "Dr. S. R. Srinivasa (9)",
+          "designation": "Assistant Professor",
+          "department": "CSE",
+          "qualification": "Ph.D. Computer Science",
+          "experience": "5 Years",
+          "publications": 2,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Shalini Mukherji (10)",
+          "designation": "Assistant Professor",
+          "department": "ECE",
+          "qualification": "Ph.D. VLSI Design",
+          "experience": "7 Years",
+          "publications": 3,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Prof. Amit Verma (11)",
+          "designation": "Assistant Professor",
+          "department": "MECH",
+          "qualification": "M.Tech Networks",
+          "experience": "9 Years",
+          "publications": 4,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Prof. Nandini Sundaram (12)",
+          "designation": "Assistant Professor",
+          "department": "CIVIL",
+          "qualification": "Ph.D. Power Systems",
+          "experience": "11 Years",
+          "publications": 5,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Vikram Batra (13)",
+          "designation": "Assistant Professor",
+          "department": "EEE",
+          "qualification": "M.Tech Splicing",
+          "experience": "13 Years",
+          "publications": 6,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Kavita Pillai (14)",
+          "designation": "Assistant Professor",
+          "department": "IT",
+          "qualification": "Ph.D. Information Security",
+          "experience": "15 Years",
+          "publications": 7,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Prof. R. K. Goel (15)",
+          "designation": "Assistant Professor",
+          "department": "CSE",
+          "qualification": "Ph.D. Computer Science",
+          "experience": "17 Years",
+          "publications": 8,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Manoj Bajpayee (16)",
+          "designation": "Assistant Professor",
+          "department": "ECE",
+          "qualification": "Ph.D. VLSI Design",
+          "experience": "19 Years",
+          "publications": 9,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Prof. Divya Teja (17)",
+          "designation": "Assistant Professor",
+          "department": "MECH",
+          "qualification": "M.Tech Networks",
+          "experience": "6 Years",
+          "publications": 10,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Hari Prasad (18)",
+          "designation": "Assistant Professor",
+          "department": "CIVIL",
+          "qualification": "Ph.D. Power Systems",
+          "experience": "8 Years",
+          "publications": 11,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Prof. N. Subramanian (19)",
+          "designation": "Assistant Professor",
+          "department": "EEE",
+          "qualification": "M.Tech Splicing",
+          "experience": "10 Years",
+          "publications": 12,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Preeti Shenoy (20)",
+          "designation": "Assistant Professor",
+          "department": "IT",
+          "qualification": "Ph.D. Information Security",
+          "experience": "12 Years",
+          "publications": 13,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Prof. Arun Lal (21)",
+          "designation": "Assistant Professor",
+          "department": "CSE",
+          "qualification": "Ph.D. Computer Science",
+          "experience": "14 Years",
+          "publications": 2,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Neha Kakkar (22)",
+          "designation": "Assistant Professor",
+          "department": "ECE",
+          "qualification": "Ph.D. VLSI Design",
+          "experience": "16 Years",
+          "publications": 3,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Prof. K. Viswanath (23)",
+          "designation": "Assistant Professor",
+          "department": "MECH",
+          "qualification": "M.Tech Networks",
+          "experience": "18 Years",
+          "publications": 4,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Sneha George (24)",
+          "designation": "Assistant Professor",
+          "department": "CIVIL",
+          "qualification": "Ph.D. Power Systems",
+          "experience": "5 Years",
+          "publications": 5,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. S. R. Srinivasa (25)",
+          "designation": "Assistant Professor",
+          "department": "EEE",
+          "qualification": "M.Tech Splicing",
+          "experience": "7 Years",
+          "publications": 6,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Shalini Mukherji (26)",
+          "designation": "Assistant Professor",
+          "department": "IT",
+          "qualification": "Ph.D. Information Security",
+          "experience": "9 Years",
+          "publications": 7,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Prof. Amit Verma (27)",
+          "designation": "Assistant Professor",
+          "department": "CSE",
+          "qualification": "Ph.D. Computer Science",
+          "experience": "11 Years",
+          "publications": 8,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Prof. Nandini Sundaram (28)",
+          "designation": "Assistant Professor",
+          "department": "ECE",
+          "qualification": "Ph.D. VLSI Design",
+          "experience": "13 Years",
+          "publications": 9,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Vikram Batra (29)",
+          "designation": "Assistant Professor",
+          "department": "MECH",
+          "qualification": "M.Tech Networks",
+          "experience": "15 Years",
+          "publications": 10,
+          "aadhaarVerified": true
+        }
+      ],
+      "documents": [
+        {
+          "name": "Land_Ownership_Certificate.pdf",
+          "category": "Land & Building",
+          "ocrStatus": "Verified",
+          "confidence": "99.1%",
+          "uploadDate": "2026-06-14",
+          "size": "2.4 MB"
+        },
+        {
+          "name": "Building_Plan_Approval.pdf",
+          "category": "Land & Building",
+          "ocrStatus": "Verified",
+          "confidence": "98.7%",
+          "uploadDate": "2026-06-14",
+          "size": "5.8 MB"
+        },
+        {
+          "name": "Fire_Safety_Certificate.pdf",
+          "category": "Safety",
+          "ocrStatus": "Verified",
+          "confidence": "97.3%",
+          "uploadDate": "2026-06-14",
+          "size": "1.2 MB"
+        },
+        {
+          "name": "NAAC_Grade_Certificate.pdf",
+          "category": "Accreditation",
+          "ocrStatus": "Verified",
+          "confidence": "99.5%",
+          "uploadDate": "2026-06-14",
+          "size": "0.8 MB"
+        },
+        {
+          "name": "NBA_Accreditation_Letter.pdf",
+          "category": "Accreditation",
+          "ocrStatus": "Verified",
+          "confidence": "98.9%",
+          "uploadDate": "2026-06-14",
+          "size": "1.1 MB"
+        },
+        {
+          "name": "Faculty_List_Signed.pdf",
+          "category": "Faculty",
+          "ocrStatus": "Verified",
+          "confidence": "96.8%",
+          "uploadDate": "2026-06-14",
+          "size": "3.2 MB"
+        },
+        {
+          "name": "Fee_Structure_2026.pdf",
+          "category": "Finance",
+          "ocrStatus": "Verified",
+          "confidence": "99.2%",
+          "uploadDate": "2026-06-14",
+          "size": "0.6 MB"
+        },
+        {
+          "name": "Bank_Solvency_Certificate.pdf",
+          "category": "Finance",
+          "ocrStatus": "Verified",
+          "confidence": "98.1%",
+          "uploadDate": "2026-06-14",
+          "size": "0.9 MB"
+        },
+        {
+          "name": "Affiliation_Certificate.pdf",
+          "category": "Affiliation",
+          "ocrStatus": "Verified",
+          "confidence": "99.4%",
+          "uploadDate": "2026-06-14",
+          "size": "1.5 MB"
+        },
+        {
+          "name": "ESC_Compliance_Report.pdf",
+          "category": "Compliance",
+          "ocrStatus": "Scanning...",
+          "confidence": "88.5%",
+          "uploadDate": "2026-07-05",
+          "size": "4.1 MB"
+        }
+      ],
+      "finances": {
+        "processingFees": [
+          {
+            "applicationId": "#1021",
+            "amount": 150000,
+            "currency": "INR",
+            "date": "2026-06-14",
+            "mode": "UPI",
+            "txnId": "TXN8821447",
+            "status": "Success"
+          },
+          {
+            "applicationId": "#1005",
+            "amount": 150000,
+            "currency": "INR",
+            "date": "2026-07-08",
+            "mode": "Net Banking",
+            "txnId": "TXN9934512",
+            "status": "Success"
+          }
+        ],
+        "totalPaid": 300000,
+        "pendingFees": 0,
+        "bankName": "State Bank of India",
+        "bankBranch": "Chennai - Anna Salai",
+        "accountNumber": "XXXX XXXX 7832",
+        "ifscCode": "SBIN0001234"
+      },
+      "auditLog": [
+        {
+          "date": "2026-06-13",
+          "time": "10:22 AM",
+          "action": "Registration Completed",
+          "by": "admin@mit.edu",
+          "category": "auth",
+          "note": "Institution account created on AICTE portal"
+        },
+        {
+          "date": "2026-06-14",
+          "time": "02:15 PM",
+          "action": "Application Submitted",
+          "by": "admin@mit.edu",
+          "category": "submission",
+          "note": "Application #1021 submitted with 10 documents"
+        },
+        {
+          "date": "2026-06-14",
+          "time": "02:17 PM",
+          "action": "Processing Fee Paid",
+          "by": "admin@mit.edu",
+          "category": "payment",
+          "note": "Rs.1,50,000 paid via UPI. TXN: TXN8821447"
+        },
+        {
+          "date": "2026-06-15",
+          "time": "09:00 AM",
+          "action": "AI OCR Document Scan Initiated",
+          "by": "AICTE AI Engine",
+          "category": "ai",
+          "note": "All 10 documents queued for OCR verification"
+        },
+        {
+          "date": "2026-06-15",
+          "time": "09:08 AM",
+          "action": "OCR Scan Completed",
+          "by": "AICTE AI Engine",
+          "category": "ai",
+          "note": "Avg confidence: 98.9%. 9/10 documents verified"
+        },
+        {
+          "date": "2026-06-15",
+          "time": "09:10 AM",
+          "action": "Compliance Auto-Check Passed",
+          "by": "AICTE AI Engine",
+          "category": "ai",
+          "note": "Infrastructure, faculty, financials all meet AICTE norms"
+        },
+        {
+          "date": "2026-06-16",
+          "time": "11:30 AM",
+          "action": "Evaluator Assigned",
+          "by": "admin@aicte.gov.in",
+          "category": "review",
+          "note": "Dr. S. Patel (AICTE Regional Officer, Chennai) assigned"
+        },
+        {
+          "date": "2026-06-17",
+          "time": "03:00 PM",
+          "action": "Physical Inspection Scheduled",
+          "by": "admin@aicte.gov.in",
+          "category": "review",
+          "note": "Inspection date: June 18, 2026 at 10:00 AM"
+        },
+        {
+          "date": "2026-06-18",
+          "time": "12:45 PM",
+          "action": "Application Approved",
+          "by": "admin@aicte.gov.in",
+          "category": "decision",
+          "note": "All criteria met. Full approval granted for 2026-27 academic session"
+        },
+        {
+          "date": "2026-07-05",
+          "time": "04:30 PM",
+          "action": "Expansion Application Submitted",
+          "by": "admin@mit.edu",
+          "category": "submission",
+          "note": "Application #1005 submitted for new MBA program"
+        },
+        {
+          "date": "2026-07-08",
+          "time": "10:20 AM",
+          "action": "Payment Confirmed",
+          "by": "Payment Gateway",
+          "category": "payment",
+          "note": "Rs.1,50,000 paid via Net Banking. TXN: TXN9934512"
+        }
+      ]
+    },
+    {
+      "email": "director@abc.edu",
+      "name": "ABC Engineering College",
+      "shortName": "ABCEC",
+      "type": "Engineering",
+      "established": 2005,
+      "affiliation": "VTU (Visvesvaraya Technological University)",
+      "autonomyStatus": "Affiliated",
+      "naacGrade": "B++",
+      "naacScore": "2.94",
+      "nbaAccredited": false,
+      "nirfRank": 124,
+      "address": {
+        "street": "45, ABC College Road, Rajajinagar",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "pincode": "560010",
+        "region": "South-West"
+      },
+      "contact": {
+        "phone": "+91-80-2340-5678",
+        "altPhone": "+91-80-2340-5679",
+        "fax": "+91-80-2340-5680",
+        "email": "director@abc.edu",
+        "website": "www.abcengg.edu.in",
+        "principalName": "Dr. Sanjay Kumar",
+        "principalPhone": "+91-98400-12345",
+        "principalEmail": "principal@abc.edu"
+      },
+      "infrastructure": {
+        "totalLand": "12 Acres",
+        "builtUpArea": "45,000 sq m",
+        "classrooms": 36,
+        "tutorialRooms": 8,
+        "drawingHalls": 3,
+        "computerLabs": 6,
+        "engineeringLabs": 12,
+        "researchLabs": 2,
+        "librarySeats": 300,
+        "libraryBooks": 28000,
+        "eJournals": 6000,
+        "hostelBoys": 350,
+        "hostelGirls": 250,
+        "sportsGround": true,
+        "indoorSports": false,
+        "cafeteria": true,
+        "medicalRoom": true,
+        "auditoriumCapacity": 800,
+        "seminarHalls": 4,
+        "conferenceRooms": 2,
+        "workshopArea": "1,600 sq m",
+        "generatorBackup": "1 x 320 KVA",
+        "internetBandwidth": "500 Mbps",
+        "cctvCount": 120
+      },
+      "programs": [
+        {
+          "code": "CSE",
+          "name": "B.Tech Computer Science & Engineering",
+          "intake": 60,
+          "duration": "4 Years",
+          "annualFee": 75000,
+          "approvalStatus": "approved",
+          "approvedYear": 2005
+        },
+        {
+          "code": "ECE",
+          "name": "B.Tech Electronics & Communication Engg.",
+          "intake": 60,
+          "duration": "4 Years",
+          "annualFee": 70000,
+          "approvalStatus": "approved",
+          "approvedYear": 2005
+        },
+        {
+          "code": "MECH",
+          "name": "B.Tech Mechanical Engineering",
+          "intake": 60,
+          "duration": "4 Years",
+          "annualFee": 68000,
+          "approvalStatus": "approved",
+          "approvedYear": 2007
+        },
+        {
+          "code": "CIVIL",
+          "name": "B.Tech Civil Engineering",
+          "intake": 60,
+          "duration": "4 Years",
+          "annualFee": 65000,
+          "approvalStatus": "approved",
+          "approvedYear": 2009
+        }
+      ],
+      "faculty": [
+        {
+          "name": "Dr. Sanjay Kumar",
+          "designation": "Principal",
+          "department": "Administration",
+          "qualification": "Ph.D. Electrical Engg.",
+          "experience": "22 Years",
+          "publications": 18
+        },
+        {
+          "name": "Dr. Meena Rao",
+          "designation": "HOD & Professor",
+          "department": "CSE",
+          "qualification": "Ph.D. Data Mining",
+          "experience": "16 Years",
+          "publications": 24
+        },
+        {
+          "name": "Prof. Vijay Shetty",
+          "designation": "Associate Professor",
+          "department": "ECE",
+          "qualification": "M.Tech Signal Processing",
+          "experience": "10 Years",
+          "publications": 13
+        },
+        {
+          "name": "Dr. Kavitha Gowda",
+          "designation": "Assistant Professor",
+          "department": "MECH",
+          "qualification": "Ph.D. Fluid Mechanics",
+          "experience": "9 Years",
+          "publications": 9
+        }
+      ],
+      "documents": [
+        {
+          "name": "Land_Certificate.pdf",
+          "category": "Land & Building",
+          "ocrStatus": "Verified",
+          "confidence": "98.9%",
+          "uploadDate": "2026-06-15",
+          "size": "2.1 MB"
+        },
+        {
+          "name": "Building_Plan.pdf",
+          "category": "Land & Building",
+          "ocrStatus": "Verified",
+          "confidence": "97.4%",
+          "uploadDate": "2026-06-15",
+          "size": "4.6 MB"
+        },
+        {
+          "name": "Fire_Safety.pdf",
+          "category": "Safety",
+          "ocrStatus": "Verified",
+          "confidence": "96.1%",
+          "uploadDate": "2026-06-15",
+          "size": "1.0 MB"
+        },
+        {
+          "name": "NAAC_Certificate.pdf",
+          "category": "Accreditation",
+          "ocrStatus": "Verified",
+          "confidence": "98.2%",
+          "uploadDate": "2026-06-15",
+          "size": "0.7 MB"
+        },
+        {
+          "name": "Faculty_Records.pdf",
+          "category": "Faculty",
+          "ocrStatus": "Verified",
+          "confidence": "95.5%",
+          "uploadDate": "2026-06-15",
+          "size": "2.9 MB"
+        },
+        {
+          "name": "Fee_Receipt.pdf",
+          "category": "Finance",
+          "ocrStatus": "Verified",
+          "confidence": "99.0%",
+          "uploadDate": "2026-06-15",
+          "size": "0.5 MB"
+        }
+      ],
+      "finances": {
+        "processingFees": [
+          {
+            "applicationId": "#1021",
+            "amount": 150000,
+            "currency": "INR",
+            "date": "2026-06-15",
+            "mode": "UPI",
+            "txnId": "TXN7712344",
+            "status": "Success"
+          }
+        ],
+        "totalPaid": 150000,
+        "pendingFees": 0,
+        "bankName": "Canara Bank",
+        "bankBranch": "Bangalore - Rajajinagar",
+        "accountNumber": "XXXX XXXX 5541",
+        "ifscCode": "CNRB0005432"
+      },
+      "auditLog": [
+        {
+          "date": "2026-06-13",
+          "time": "11:00 AM",
+          "action": "Registration Completed",
+          "by": "director@abc.edu",
+          "category": "auth",
+          "note": "Institution registered on AICTE portal"
+        },
+        {
+          "date": "2026-06-15",
+          "time": "10:30 AM",
+          "action": "Application Submitted",
+          "by": "director@abc.edu",
+          "category": "submission",
+          "note": "Application #1021 submitted with 6 documents"
+        },
+        {
+          "date": "2026-06-15",
+          "time": "10:32 AM",
+          "action": "Processing Fee Paid",
+          "by": "director@abc.edu",
+          "category": "payment",
+          "note": "Rs.1,50,000 via UPI. TXN: TXN7712344"
+        },
+        {
+          "date": "2026-06-16",
+          "time": "08:55 AM",
+          "action": "OCR Scan Completed",
+          "by": "AICTE AI Engine",
+          "category": "ai",
+          "note": "Avg confidence: 97.5%. All 6 documents verified"
+        },
+        {
+          "date": "2026-06-17",
+          "time": "02:00 PM",
+          "action": "Evaluator Assigned",
+          "by": "admin@aicte.gov.in",
+          "category": "review",
+          "note": "Evaluator Dr. Ramesh assigned for Southwest zone"
+        },
+        {
+          "date": "2026-06-18",
+          "time": "04:00 PM",
+          "action": "Application Approved",
+          "by": "admin@aicte.gov.in",
+          "category": "decision",
+          "note": "All criteria met. Approval granted 2026-27"
+        }
+      ]
+    },
+    {
+      "email": "admin@aicte.gov.in",
+      "name": "AICTE Central Board",
+      "shortName": "",
+      "type": "Engineering",
+      "established": 2026,
+      "affiliation": "",
+      "autonomyStatus": "Affiliated",
+      "naacGrade": "Pending",
+      "naacScore": "N/A",
+      "nbaAccredited": false,
+      "nirfRank": 0,
+      "address": {
+        "street": "",
+        "city": "",
+        "state": "",
+        "pincode": "",
+        "region": ""
+      },
+      "contact": {
+        "phone": "",
+        "altPhone": "",
+        "fax": "",
+        "email": "admin@aicte.gov.in",
+        "website": "",
+        "principalName": "",
+        "principalPhone": "",
+        "principalEmail": ""
+      },
+      "infrastructure": {},
+      "programs": [],
+      "faculty": [],
+      "documents": [],
+      "finances": {
+        "processingFees": [],
+        "totalPaid": 0,
+        "pendingFees": 0,
+        "bankName": "",
+        "bankBranch": "",
+        "accountNumber": "",
+        "ifscCode": ""
+      },
+      "auditLog": []
+    },
+    {
+      "email": "VSB@CLG",
+      "name": "vsb engineering ",
+      "shortName": "",
+      "type": "Engineering",
+      "established": 2026,
+      "affiliation": "",
+      "autonomyStatus": "Affiliated",
+      "naacGrade": "Pending",
+      "naacScore": "N/A",
+      "nbaAccredited": false,
+      "nirfRank": 0,
+      "address": {
+        "street": "",
+        "city": "",
+        "state": "",
+        "pincode": "",
+        "region": ""
+      },
+      "contact": {
+        "phone": "",
+        "altPhone": "",
+        "fax": "",
+        "email": "VSB@CLG",
+        "website": "",
+        "principalName": "",
+        "principalPhone": "",
+        "principalEmail": ""
+      },
+      "infrastructure": {},
+      "programs": [],
+      "faculty": [
+        {
+          "name": "Dr. S. R. Srinivasa (1)",
+          "designation": "Assistant Professor",
+          "department": "CSE",
+          "qualification": "Ph.D. Computer Science",
+          "experience": "5 Years",
+          "publications": 2,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Shalini Mukherji (2)",
+          "designation": "Assistant Professor",
+          "department": "ECE",
+          "qualification": "Ph.D. VLSI Design",
+          "experience": "7 Years",
+          "publications": 3,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Prof. Amit Verma (3)",
+          "designation": "Assistant Professor",
+          "department": "MECH",
+          "qualification": "M.Tech Networks",
+          "experience": "9 Years",
+          "publications": 4,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Prof. Nandini Sundaram (4)",
+          "designation": "Assistant Professor",
+          "department": "CIVIL",
+          "qualification": "Ph.D. Power Systems",
+          "experience": "11 Years",
+          "publications": 5,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Vikram Batra (5)",
+          "designation": "Assistant Professor",
+          "department": "EEE",
+          "qualification": "M.Tech Splicing",
+          "experience": "13 Years",
+          "publications": 6,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Kavita Pillai (6)",
+          "designation": "Assistant Professor",
+          "department": "IT",
+          "qualification": "Ph.D. Information Security",
+          "experience": "15 Years",
+          "publications": 7,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Prof. R. K. Goel (7)",
+          "designation": "Assistant Professor",
+          "department": "CSE",
+          "qualification": "Ph.D. Computer Science",
+          "experience": "17 Years",
+          "publications": 8,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Manoj Bajpayee (8)",
+          "designation": "Assistant Professor",
+          "department": "ECE",
+          "qualification": "Ph.D. VLSI Design",
+          "experience": "19 Years",
+          "publications": 9,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Prof. Divya Teja (9)",
+          "designation": "Assistant Professor",
+          "department": "MECH",
+          "qualification": "M.Tech Networks",
+          "experience": "6 Years",
+          "publications": 10,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Hari Prasad (10)",
+          "designation": "Assistant Professor",
+          "department": "CIVIL",
+          "qualification": "Ph.D. Power Systems",
+          "experience": "8 Years",
+          "publications": 11,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Prof. N. Subramanian (11)",
+          "designation": "Assistant Professor",
+          "department": "EEE",
+          "qualification": "M.Tech Splicing",
+          "experience": "10 Years",
+          "publications": 12,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Preeti Shenoy (12)",
+          "designation": "Assistant Professor",
+          "department": "IT",
+          "qualification": "Ph.D. Information Security",
+          "experience": "12 Years",
+          "publications": 13,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Prof. Arun Lal (13)",
+          "designation": "Assistant Professor",
+          "department": "CSE",
+          "qualification": "Ph.D. Computer Science",
+          "experience": "14 Years",
+          "publications": 2,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Dr. Neha Kakkar (14)",
+          "designation": "Assistant Professor",
+          "department": "ECE",
+          "qualification": "Ph.D. VLSI Design",
+          "experience": "16 Years",
+          "publications": 3,
+          "aadhaarVerified": true
+        },
+        {
+          "name": "Prof. K. Viswanath (15)",
+          "designation": "Assistant Professor",
+          "department": "MECH",
+          "qualification": "M.Tech Networks",
+          "experience": "18 Years",
+          "publications": 4,
+          "aadhaarVerified": true
+        }
+      ],
+      "documents": [],
+      "finances": {
+        "processingFees": [],
+        "totalPaid": 0,
+        "pendingFees": 0,
+        "bankName": "",
+        "bankBranch": "",
+        "accountNumber": "",
+        "ifscCode": ""
+      },
+      "auditLog": []
+    }
+  ],
+  "applications": [
+    {
+      "id": "#1021",
+      "college": "ABC Engineering College",
+      "submittedBy": "director@abc.edu",
+      "submittedDate": "2026-06-15",
+      "status": "approved",
+      "type": "Engineering",
+      "region": "South-West",
+      "landArea": "12 Acres",
+      "builtUpArea": "45,000 sq m",
+      "faculty": [
+        {
+          "name": "Dr. Rajesh Sharma",
+          "qualification": "Ph.D. CSE",
+          "experience": "15 Years"
+        },
+        {
+          "name": "Prof. Ananya Sen",
+          "qualification": "M.Tech CSE",
+          "experience": "8 Years"
+        }
+      ],
+      "documents": [
+        "Land_Certificate.pdf",
+        "Building_Plan.pdf",
+        "Fire_Safety.pdf"
+      ],
+      "ocrStatus": "Verified",
+      "confidence": "98.9%",
+      "remarks": "Infrastructure and faculty numbers meet all compliance metrics.",
+      "updatedAt": "2026-06-18"
+    },
+    {
+      "id": "#1022",
+      "college": "XYZ Polytechnic",
+      "submittedBy": "principal@xyz.edu",
+      "submittedDate": "2026-07-01",
+      "status": "pending",
+      "type": "Polytechnic",
+      "region": "North",
+      "landArea": "6 Acres",
+      "builtUpArea": "18,000 sq m",
+      "faculty": [
+        {
+          "name": "Dr. K. Srinivasan",
+          "qualification": "Ph.D. ME",
+          "experience": "12 Years"
+        }
+      ],
+      "documents": [
+        "Land_Certificate.pdf",
+        "Safety_Certificate.pdf"
+      ],
+      "ocrStatus": "Scanning...",
+      "confidence": "87.5%",
+      "remarks": "",
+      "updatedAt": "2026-07-01"
+    },
+    {
+      "id": "#1023",
+      "college": "National Institute of Pharmacy",
+      "submittedBy": "admin@nip.edu",
+      "submittedDate": "2026-06-28",
+      "status": "review",
+      "type": "Pharmacy",
+      "region": "Central",
+      "landArea": "8 Acres",
+      "builtUpArea": "22,000 sq m",
+      "faculty": [
+        {
+          "name": "Dr. Meera Nair",
+          "qualification": "Ph.D. Pharmacy",
+          "experience": "10 Years"
+        },
+        {
+          "name": "Dr. Dev Anand",
+          "qualification": "Ph.D. Chemistry",
+          "experience": "14 Years"
+        }
+      ],
+      "documents": [
+        "Land_Certificate.pdf",
+        "PCI_Approval.pdf"
+      ],
+      "ocrStatus": "Verified",
+      "confidence": "91.2%",
+      "remarks": "Evaluator requested verification on Pharm.D equipment specifications.",
+      "updatedAt": "2026-07-03"
+    },
+    {
+      "id": "#1024",
+      "college": "AI Tech College",
+      "submittedBy": "admin@aitech.edu",
+      "submittedDate": "2026-06-10",
+      "status": "approved",
+      "type": "Engineering",
+      "region": "West",
+      "landArea": "10 Acres",
+      "builtUpArea": "38,000 sq m",
+      "faculty": [
+        {
+          "name": "Dr. Alan Turing",
+          "qualification": "Ph.D. AI",
+          "experience": "20 Years"
+        }
+      ],
+      "documents": [
+        "Land_Doc.pdf",
+        "AI_Curriculum.pdf",
+        "Fire_Safety.pdf"
+      ],
+      "ocrStatus": "Verified",
+      "confidence": "99.2%",
+      "remarks": "Excellent setup for AI/ML specialized laboratory equipment.",
+      "updatedAt": "2026-06-12"
+    },
+    {
+      "id": "#1005",
+      "college": "vsb engineering ",
+      "submittedBy": "admin@mit.edu",
+      "submittedDate": "2026-07-08",
+      "status": "pending",
+      "type": "Engineering",
+      "region": "South-West",
+      "landArea": "32",
+      "builtUpArea": "32000",
+      "faculty": [
+        {
+          "name": "AJ",
+          "qualification": "PH.D",
+          "experience": "5 YEARS"
+        }
+      ],
+      "documents": [
+        "java fundamentals.pdf"
+      ],
+      "ocrStatus": "Verified",
+      "confidence": "98.9%",
+      "remarks": "",
+      "updatedAt": "2026-07-08"
+    }
+  ]
+}
