@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICTE Approval Process Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <!-- ================= Background ================= -->
+    <div class="background">
+        <div class="grid"></div>
+        <div class="gradient"></div>
+        <div class="particles">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- ================= Header ================= -->
+    <header>
+        <div class="logo" onclick="window.location.href='index.html'">
+            <i class="fa-solid fa-building-columns"></i>
+            <h2>AICTE Portal</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="approval.html">Approval</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </nav>
+        <div class="header-btn">
+            <a href="login.html" class="login">Login</a>
+            <a href="register.html" class="register">Register</a>
+        </div>
+    </header>
+
+    <!-- ================= Hero Section ================= -->
+    <section class="hero">
+        <div class="hero-left">
+            <div class="tag">
+                <i class="fa-solid fa-bolt"></i>
+                AICTE APPROVAL SYSTEM v2.0
+            </div>
+            <h1>
+                Transform the Future of
+                <span>AICTE Approval</span>
+                Process Portal
+            </h1>
+            <p>
+                AI-powered institution approval management with secure
+                document verification, smart analytics, digital workflow,
+                and real-time application tracking.
+            </p>
+            <div class="hero-buttons">
+                <button class="primary">
+                    Get Started
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <button class="secondary">
+                    View Dashboard
+                </button>
+            </div>
+            <!-- Statistics -->
+            <div class="stats">
+                <div class="card">
+                    <i class="fa-solid fa-school"></i>
+                    <h2>2400+</h2>
+                    <p>Approved Colleges</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <h2>99.8%</h2>
+                    <p>Approval Success</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-users"></i>
+                    <h2>48000+</h2>
+                    <p>Registered Users</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Right -->
+        <div class="hero-right">
+            <div class="glass-card">
+                <div class="circle one"></div>
+                <div class="circle two"></div>
+                <div class="circle three"></div>
+                <h3>Approval Analytics</h3>
+                <div class="progress-box">
+                    <label>Institution Verification</label>
+                    <div class="progress">
+                        <div class="bar p1"></div>
+                    </div>
+                </div>
+                <div class="progress-box">
+                    <label>Document Validation</label>
+                    <div class="progress">
+                        <div class="bar p2"></div>
+                    </div>
+                </div>
+                <div class="progress-box">
+                    <label>AI Processing</label>
+                    <div class="progress">
+                        <div class="bar p3"></div>
+                    </div>
+                </div>
+                <div class="dashboard-cards">
+                    <div class="mini-card">
+                        <i class="fa-solid fa-file-circle-check"></i>
+                        <h4>1240</h4>
+                        <p>Applications</p>
+                    </div>
+                    <div class="mini-card">
+                        <i class="fa-solid fa-microchip"></i>
+                        <h4>AI</h4>
+                        <p>Verified</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+            DASHBOARD ANALYTICS
+    ========================================== -->
+    <section class="dashboard">
+        <div class="section-title">
+            <h4>LIVE ANALYTICS</h4>
+            <h2>AICTE <span>Dashboard</span></h2>
+            <p>
+                Monitor approvals, institutions, faculty, AI verification and
+                real-time application statistics.
+            </p>
+        </div>
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="icon">
+                    <i class="fa-solid fa-building"></i>
+                </div>
+                <h1 class="counter" data-target="2450">0</h1>
+                <p>Approved Institutions</p>
+            </div>
+            <div class="dashboard-card">
+                <div class="icon">
+                    <i class="fa-solid fa-file-circle-check"></i>
+                </div>
+                <h1 class="counter" data-target="18940">0</h1>
+                <p>Applications Processed</p>
+            </div>
+            <div class="dashboard-card">
+                <div class="icon">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+                <h1 class="counter" data-target="58000">0</h1>
+                <p>Faculty Verified</p>
+            </div>
+            <div class="dashboard-card">
+                <div class="icon">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <h1>99.8%</h1>
+                <p>AI Accuracy</p>
+            </div>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="progress-container">
+            <div class="progress-card">
+                <h3>Institution Verification</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill fill1"></div>
+                </div>
+                <span>92%</span>
+            </div>
+            <div class="progress-card">
+                <h3>Document Validation</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill fill2"></div>
+                </div>
+                <span>87%</span>
+            </div>
+            <div class="progress-card">
+                <h3>Approval Completed</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill fill3"></div>
+                </div>
+                <span>96%</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+            SMART AI DASHBOARD
+    ========================================== -->
+    <section class="smart-dashboard">
+        <div class="section-title">
+            <h4>AI MONITORING</h4>
+            <h2>Smart <span>Control Center</span></h2>
+            <p>
+                Monitor every approval process from a single dashboard.
+            </p>
+        </div>
+        <div class="dashboard-container">
+            <!-- Left -->
+            <div class="ai-panel">
+                <div class="ai-header">
+                    <i class="fa-solid fa-robot"></i>
+                    <h3>AI Assistant Logs</h3>
+                </div>
+                <div class="chat-box">
+                    <div class="bot">✔ Institution metadata loaded.</div>
+                    <div class="bot">📄 Integrity validation engine active.</div>
+                </div>
+                <button class="primary" onclick="window.location.href='support.html'">
+                    Open AI Support Desk
+                </button>
+            </div>
+
+            <!-- Right -->
+            <div class="live-panel">
+                <h3>Recent Applications</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>College</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#1021</td>
+                            <td>ABC Engineering</td>
+                            <td><span class="status approved">Approved</span></td>
+                        </tr>
+                        <tr>
+                            <td>#1022</td>
+                            <td>XYZ Polytechnic</td>
+                            <td><span class="status pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>#1023</td>
+                            <td>National Institute</td>
+                            <td><span class="status review">Review</span></td>
+                        </tr>
+                        <tr>
+                            <td>#1024</td>
+                            <td>AI Tech College</td>
+                            <td><span class="status approved">Approved</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+            FEATURES SECTION
+    =========================================== -->
+    <section class="features">
+        <div class="section-title">
+            <h4>OUR SERVICES</h4>
+            <h2>
+                Smart AICTE Approval
+                <span>Management System</span>
+            </h2>
+            <p>
+                Digital platform for AICTE institution approval,
+                faculty verification, AI document validation and
+                real-time analytics.
+            </p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+                <h3>Institution Approval</h3>
+                <p>
+                    Submit institution details and receive
+                    AI-assisted approval recommendations.
+                </p>
+                <a href="approval.html">Learn More →</a>
+            </div>
+            <div class="feature-card">
+                <div class="icon">
+                    <i class="fa-solid fa-file-shield"></i>
+                </div>
+                <h3>Document Verification</h3>
+                <p>
+                    Upload documents securely with
+                    AI-powered verification and validation.
+                </p>
+                <a href="approval.html">Learn More →</a>
+            </div>
+            <div class="feature-card">
+                <div class="icon">
+                    <i class="fa-solid fa-users-gear"></i>
+                </div>
+                <h3>Faculty Management</h3>
+                <p>
+                    Manage faculty records, qualifications and approvals.
+                </p>
+                <a href="approval.html">Learn More →</a>
+            </div>
+            <div class="feature-card">
+                <div class="icon">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3>AI Verification</h3>
+                <p>
+                    Artificial Intelligence automatically checks submitted information.
+                </p>
+                <a href="approval.html">Learn More →</a>
+            </div>
+            <div class="feature-card">
+                <div class="icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3>Analytics Dashboard</h3>
+                <p>
+                    Track applications, approval rates and reports.
+                </p>
+                <a href="analytics.html">Learn More →</a>
+            </div>
+            <div class="feature-card">
+                <div class="icon">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3>Secure Portal</h3>
+                <p>
+                    Advanced encryption keeps all institutional data secure.
+                </p>
+                <a href="support.html">Learn More →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll">
+        <span></span>
+        <p>SCROLL</p>
+    </div>
+
+    <!-- Floating Icons -->
+    <div class="floating-icon icon1">
+        <i class="fa-solid fa-robot"></i>
+    </div>
+    <div class="floating-icon icon2">
+        <i class="fa-solid fa-brain"></i>
+    </div>
+    <div class="floating-icon icon3">
+        <i class="fa-solid fa-shield-halved"></i>
+    </div>
+    <div class="floating-icon icon4">
+        <i class="fa-solid fa-cloud"></i>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICTE Portal - Support Desk</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <!-- ================= Background ================= -->
+    <div class="background">
+        <div class="grid"></div>
+        <div class="gradient"></div>
+        <div class="particles">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <!-- ================= Header ================= -->
+    <header>
+        <div class="logo" onclick="window.location.href='index.html'">
+            <i class="fa-solid fa-building-columns"></i>
+            <h2>AICTE Portal</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="approval.html">Approval</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="institution.html">Institution</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
+                <li><a href="support.html" class="active">Support</a></li>
+            </ul>
+        </nav>
+        <div class="header-btn">
+            <a href="login.html" class="login">Login</a>
+            <a href="register.html" class="register">Register</a>
+        </div>
+    </header>
+
+    <!-- ================= Support Workspace ================= -->
+    <section class="support-workspace">
+        <div class="section-title" style="margin-bottom: 3rem;">
+            <h4>SUPPORT DESK</h4>
+            <h2>AICTE Smart <span>Virtual Helpdesk</span></h2>
+            <p>Resolve queries about administrative approvals, safety parameters, timelines, and dashboard controls.</p>
+        </div>
+
+        <div class="support-container">
+            <!-- Left: FAQs List -->
+            <div class="support-sidebar">
+                <h3>Frequently Asked FAQs</h3>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How long does the AICTE approval process take?</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Our compliance engine evaluates PDFs and formats instantly. Board evaluator validation inspections generally process within 3-5 business days.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What documents are required for application?</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Key files needed: Land Ownership/Lease Certificate, Certified Building Blueprint, Fire Safety Audit, and Bharat Bill Fee Receipt. All files must be official PDFs.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How does AI document verification work?</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Our system runs OCR text reading, verifies legal stamps, extracts building plans scale, and cross-references faculty qualification credentials automatically.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How can I reset my security password?</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            For security purposes, password changes must be authorized by institution directors. Please submit a request ticket to helpdesk@aicte.gov.in.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Interactive Chatbox -->
+            <div class="support-chat-card">
+                <div class="support-chat-header">
+                    <i class="fa-solid fa-robot"></i>
+                    <div class="support-chat-header-info">
+                        <h4>AICTE Smart Assistant</h4>
+                        <span>Active Online</span>
+                    </div>
+                </div>
+
+                <!-- Chat Messages Stream -->
+                <div class="support-chat-messages" id="supportChatMessages">
+                    <div class="bot">
+                        <i class="fa-solid fa-robot" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                        <span>Hello! Welcome to the AICTE Portal Support Desk. I am your automated assistant. Ask me anything about regulatory approvals!</span>
+                    </div>
+                </div>
+
+                <!-- Chat suggestion prompt chips -->
+                <div class="chat-suggestion-chips">
+                    <button class="chip">How to apply?</button>
+                    <button class="chip">Required Documents</button>
+                    <button class="chip">Track application status</button>
+                    <button class="chip">Approval Timelines</button>
+                </div>
+
+                <!-- Input area -->
+                <div class="support-chat-input-area">
+                    <div class="chat-input-wrapper">
+                        <input type="text" id="chatInput" placeholder="Write your question here..." autocomplete="off">
+                        <button class="primary" id="sendBtn">
+                            Send <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

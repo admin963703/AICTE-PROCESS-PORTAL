@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICTE Portal - Register</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <!-- ================= Background ================= -->
+    <div class="background">
+        <div class="grid"></div>
+        <div class="gradient"></div>
+        <div class="particles">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <!-- ================= Header ================= -->
+    <header>
+        <div class="logo" onclick="window.location.href='index.html'">
+            <i class="fa-solid fa-building-columns"></i>
+            <h2>AICTE Portal</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="approval.html">Approval</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </nav>
+        <div class="header-btn">
+            <a href="login.html" class="login">Login</a>
+            <a href="register.html" class="register active">Register</a>
+        </div>
+    </header>
+
+    <!-- ================= Form Section ================= -->
+    <div class="form-container">
+        <div class="form-card">
+            <h2>Portal <span>Registration</span></h2>
+            <p>Establish a secure digital interface with AICTE Board</p>
+            
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="org">Organization / Institution Name</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="org" placeholder="e.g. MIT Engineering College" required autocomplete="organization">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Portal Email Address</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" placeholder="e.g. admin@mit.edu" required autocomplete="email">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Register As (Account Role)</label>
+                    <div class="input-wrapper">
+                        <select id="role" required>
+                            <option value="institution">Institution Administrator</option>
+                            <option value="evaluator">AICTE Evaluator / Board Member</option>
+                        </select>
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Create Security Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" placeholder="Minimum 6 characters" required autocomplete="new-password" minlength="6">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label>
+                        <input type="checkbox" required> I agree to board terms & conditions
+                    </label>
+                </div>
+
+                <button type="submit" class="primary">
+                    Create Portal Profile
+                    <i class="fa-solid fa-user-plus"></i>
+                </button>
+            </form>
+
+            <div class="form-footer">
+                Already registered? <a href="login.html">Sign In Here</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

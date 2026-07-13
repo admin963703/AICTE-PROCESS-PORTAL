@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICTE Portal - Institution Approval</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <!-- ================= Background ================= -->
+    <div class="background">
+        <div class="grid"></div>
+        <div class="gradient"></div>
+        <div class="particles">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <!-- ================= Header ================= -->
+    <header>
+        <div class="logo" onclick="window.location.href='index.html'">
+            <i class="fa-solid fa-building-columns"></i>
+            <h2>AICTE Portal</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="approval.html" class="active">Approval</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="institution.html">Institution</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </nav>
+        <div class="header-btn">
+            <a href="login.html" class="login">Login</a>
+            <a href="register.html" class="register">Register</a>
+        </div>
+    </header>
+
+    <!-- ================= Approval Workspace ================= -->
+    <section class="approval-workspace">
+        <!-- Sidebar Step Indicators -->
+        <div class="steps-panel">
+            <h3>Approval Progress</h3>
+            <div class="step-indicator">
+                <div class="step-item active" id="stepIndicator1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">
+                        <span class="num-txt">Step 01</span>
+                        <span class="label-txt">Institution Info</span>
+                    </div>
+                </div>
+
+                <div class="step-item" id="stepIndicator2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">
+                        <span class="num-txt">Step 02</span>
+                        <span class="label-txt">Faculty Roster</span>
+                    </div>
+                </div>
+
+                <div class="step-item" id="stepIndicator3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">
+                        <span class="num-txt">Step 03</span>
+                        <span class="label-txt">Upload Checklist</span>
+                    </div>
+                </div>
+
+                <div class="step-item" id="stepIndicator4">
+                    <div class="step-number">4</div>
+                    <div class="step-label">
+                        <span class="num-txt">Step 04</span>
+                        <span class="label-txt">Processing Fee</span>
+                    </div>
+                </div>
+
+                <div class="step-item" id="stepIndicator5">
+                    <div class="step-number">5</div>
+                    <div class="step-label">
+                        <span class="num-txt">Step 05</span>
+                        <span class="label-txt">AI Verification</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Contents -->
+        <div class="form-steps-container">
+            <!-- Step 1: Info -->
+            <div class="form-step-content active" id="stepContent1">
+                <h2>Institutional Details</h2>
+                <p>Provide basic administrative, regional, and land infrastructure dimensions.</p>
+                
+                <div class="form-group">
+                    <label for="colName">Institution / College Name</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="colName" placeholder="e.g. MIT Engineering College" required>
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="colType">Institution Type</label>
+                        <div class="input-wrapper">
+                            <select id="colType" required>
+                                <option value="">Select Type</option>
+                                <option value="Engineering">Engineering & Tech</option>
+                                <option value="Pharmacy">Pharmacy</option>
+                                <option value="Polytechnic">Polytechnic</option>
+                                <option value="Management">Management (MBA/MCA)</option>
+                                <option value="Architecture">Architecture</option>
+                            </select>
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="region">Regional Office Jurisdiction</label>
+                        <div class="input-wrapper">
+                            <select id="region" required>
+                                <option value="South-West">South-West (Bangalore)</option>
+                                <option value="West">West (Mumbai)</option>
+                                <option value="North">North (Chandigarh)</option>
+                                <option value="East">East (Kolkata)</option>
+                                <option value="Central">Central (Bhopal)</option>
+                            </select>
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="landArea">Land Area (Acres)</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="landArea" placeholder="e.g. 10.5 Acres" required>
+                            <i class="fa-solid fa-vector-square"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="builtUpArea">Built-up Academic Area (sq m)</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="builtUpArea" placeholder="e.g. 35,000 sq m" required>
+                            <i class="fa-solid fa-tarp"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Faculty Roster -->
+            <div class="form-step-content" id="stepContent2">
+                <h2>Faculty Roster Management</h2>
+                <p>Register standard details of your active qualified instructional faculty members.</p>
+                
+                <div class="faculty-list-builder" id="facultyListContainer">
+                    <!-- Dynamic Entry Rows will append here -->
+                    <div class="faculty-entry-row">
+                        <div class="form-group">
+                            <label>Faculty Name</label>
+                            <div class="input-wrapper">
+                                <input type="text" class="fac-name" placeholder="Full Name" required>
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Qualification</label>
+                            <div class="input-wrapper">
+                                <input type="text" class="fac-qual" placeholder="e.g. Ph.D. / M.Tech" required>
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Experience</label>
+                            <div class="input-wrapper">
+                                <input type="text" class="fac-exp" placeholder="e.g. 10 Years" required>
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                        </div>
+                        <button type="button" class="remove-faculty-btn" style="opacity: 0.5; cursor: not-allowed;" disabled>
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="button" class="secondary add-faculty-btn" id="addFacultyBtn">
+                    <i class="fa-solid fa-user-plus"></i> Add Faculty Member
+                </button>
+            </div>
+
+            <!-- Step 3: Upload Checklist -->
+            <div class="form-step-content" id="stepContent3">
+                <h2>Regulatory Document Checklists</h2>
+                <p>Secure upload portal for structural, land legalities, safety audits, and financial receipts.</p>
+                
+                <div class="upload-grid">
+                    <div class="upload-card" id="dropzone">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <h4>Drag and drop files here</h4>
+                        <p>Accepting official PDF format only (Max 10MB per file)</p>
+                        <input type="file" id="docFileInput" accept=".pdf" multiple>
+                    </div>
+                </div>
+
+                <div class="file-list" id="fileListContainer">
+                    <!-- Uploaded file lists append here -->
+                </div>
+            </div>
+
+            <!-- Step 4: Processing Fee Payment -->
+            <div class="form-step-content" id="stepContent4">
+                <h2>Regulatory Processing Fee Payment</h2>
+                <p>AICTE processing fee depending on institution program category. Select payment mode to authorize submission.</p>
+                
+                <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem;">
+                        <span style="font-weight: 500; color: var(--text-secondary);">Calculated Regulatory Processing Fee:</span>
+                        <span id="calculatedFee" style="font-size: 1.6rem; font-weight: 700; color: var(--primary);">₹1,50,000</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Select Payment Gateway Channel</label>
+                        <div class="input-wrapper" style="margin-bottom: 1rem;">
+                            <select id="paymentGateway" required>
+                                <option value="upi">UPI Gateway (Instamojo / BHIM UPI)</option>
+                                <option value="card">Secure Credit / Debit Card (SBIPay)</option>
+                                <option value="netbanking">Net Banking (Corporate Portal)</option>
+                            </select>
+                            <i class="fa-solid fa-credit-card"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card Details Form -->
+                    <div id="cardPaymentDetails" style="display: none; margin-top: 1rem; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 1rem;">
+                        <div class="form-group">
+                            <label>Card Number</label>
+                            <div class="input-wrapper">
+                                <input type="text" placeholder="1111 - 2222 - 3333 - 4444" id="cardNumber">
+                                <i class="fa-solid fa-credit-card"></i>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Expiry Date</label>
+                                <div class="input-wrapper">
+                                    <input type="text" placeholder="MM / YY" id="cardExpiry">
+                                    <i class="fa-solid fa-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>CVV</label>
+                                <div class="input-wrapper">
+                                    <input type="password" placeholder="•••" id="cardCvv">
+                                    <i class="fa-solid fa-shield"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UPI Payment Details -->
+                    <div id="upiPaymentDetails" style="text-align: center; margin-top: 1.5rem; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 1.5rem;">
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1rem;">Scan QR code with your mobile banking application:</p>
+                        <div style="background: white; padding: 10px; width: 130px; height: 130px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                            <i class="fa-solid fa-qrcode" style="font-size: 7rem; color: black;"></i>
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">UPI ID: aictecentral@sbi</p>
+                    </div>
+
+                    <!-- Transaction Status Alert -->
+                    <div id="paymentStatusBox" style="display: none; text-align: center; padding: 1rem; margin-top: 1.5rem; border-radius: 8px; border: 1px dashed var(--success); background: rgba(0, 230, 118, 0.03);">
+                        <p style="color: var(--success); font-weight: 600; font-size: 0.85rem; margin: 0;">
+                            <i class="fa-solid fa-circle-check"></i> Transaction Completed & Verified. Receipt ID: TXN_882910
+                        </p>
+                    </div>
+
+                    <button type="button" class="primary" id="simulatePaymentBtn" style="width: 100%; margin-top: 1.5rem; background: var(--secondary);">
+                        <i class="fa-solid fa-wallet"></i> Process Regulatory Payment
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 5: AI Verification Sandbox -->
+            <div class="form-step-content" id="stepContent5">
+                <h2>Smart AI Compliance Verification</h2>
+                <p>Automated OCR validation models verification check against regulatory framework guidelines.</p>
+                
+                <div class="two-col" style="margin-top: 1.5rem; gap: 2rem;">
+                    <!-- Left: Document Scan Panel -->
+                    <div class="g-card" style="margin-bottom: 0; padding: 20px;">
+                        <div class="section-title" style="margin-bottom: 12px; font-size: 0.9rem;"><i class="fa-solid fa-file-invoice"></i> OCR Scanner Document View</div>
+                        <div class="scanner-container">
+                            <div class="scanner-laser" id="scannerLaser"></div>
+                            <div class="scanner-overlay" id="scannerOverlay"></div>
+                            <div class="scanner-doc" id="scannerDoc">
+                                <h3 style="font-size: 10px; font-weight: 800; border-bottom: 1px solid #111; padding-bottom: 4px; margin-bottom: 6px; text-align: center;">REGULATORY COMPLIANCE CERTIFICATE</h3>
+                                <p><strong>REGISTRY ID:</strong> MIT_CAMPUS_2026_NOC</p>
+                                <p><strong>DOCUMENT:</strong> STATUTORY FIRE NOC & SAFETY REPORT</p>
+                                <p><strong>EXPIRY DATE:</strong> 2028-12-15</p>
+                                <p><strong>LAND PLOT NO:</strong> CHROMEPET-12/1000A</p>
+                                <p><strong>CAMPUS COORDINATES:</strong> 12.9516° N, 80.1411° E</p>
+                                <p><strong>LAND BOUNDARY AREA:</strong> 12.0 ACRES</p>
+                                <p><strong>BUILT-UP AREA:</strong> 45,000 SQ M</p>
+                                <p><strong>TOTAL CLASSROOMS:</strong> 48 COMPLIANT UNITS</p>
+                                <p><strong>SIGNING AUTH:</strong> CHIEF FIRE AUDITOR, TAMIL NADU</p>
+                                <div style="margin-top: 20px; border-top: 1px dashed #777; padding-top: 8px; font-size: 7px; color: #555;">
+                                    * Digitally signed and encrypted under National Board of Safety Standards. UIDAI biometric checked.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Diagnostics Log & Checklist -->
+                    <div class="validation-sandbox" style="display: flex; flex-direction: column; gap: 1.25rem;">
+                        <div class="sandbox-status-card" style="padding: 1.2rem; margin-bottom: 0;">
+                            <div class="sandbox-step pending" id="sandboxStep1">
+                                <i class="fa-solid fa-circle-notch"></i>
+                                <div class="sandbox-step-text">
+                                    <h5>1. Document Format & Signature Integrity Check</h5>
+                                    <p>Analyzes PDF validation, legal metadata stamps, and signing authorities.</p>
+                                </div>
+                            </div>
+
+                            <div class="sandbox-step pending" id="sandboxStep2">
+                                <i class="fa-solid fa-circle-notch"></i>
+                                <div class="sandbox-step-text">
+                                    <h5>2. OCR Text Analysis & Land Data Extraction</h5>
+                                    <p>Extracts registry records, boundary numbers, and area compliance metrics.</p>
+                                </div>
+                            </div>
+
+                            <div class="sandbox-step pending" id="sandboxStep3">
+                                <i class="fa-solid fa-circle-notch"></i>
+                                <div class="sandbox-step-text">
+                                    <h5>3. Parameter Compliance Check</h5>
+                                    <p>Checks safety audit validation dates and built-up area blueprint scale matches.</p>
+                                </div>
+                            </div>
+
+                            <div class="sandbox-step pending" id="sandboxStep4">
+                                <i class="fa-solid fa-circle-notch"></i>
+                                <div class="sandbox-step-text">
+                                    <h5>4. Faculty Qualifications Credential Scan</h5>
+                                    <p>Cross-references registered faculty details with educational board APIs.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Terminal Logs -->
+                        <div class="ocr-terminal-logs" id="ocrTerminalLogs">
+                            [System] Ready to run AI Diagnostics check...<br>
+                            [System] Click execution button below to begin OCR scan...
+                        </div>
+
+                        <div style="display: flex; gap: 12px; align-items: center; justify-content: space-between;">
+                            <div class="ai-confidence-score" style="flex: 1; margin-top: 0; padding: 0.8rem 1rem;">
+                                <h4 style="font-size: 0.72rem; margin-bottom: 2px;">AI Match Score</h4>
+                                <div class="score-value" id="scoreVal" style="font-size: 1.8rem; line-height: 1.2;">--%</div>
+                            </div>
+                            
+                            <button type="button" class="primary" id="runOcrBtn" style="flex: 1.5; margin: 0; height: 52px; justify-content: center;">
+                                <i class="fa-solid fa-microchip"></i> Execute AI Audit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons Footer -->
+            <div class="step-controls">
+                <button type="button" class="secondary" id="prevBtn">
+                    <i class="fa-solid fa-chevron-left"></i> Previous Step
+                </button>
+                <button type="button" class="primary" id="nextBtn">
+                    Next Step <i class="fa-solid fa-chevron-right"></i>
+                </button>
+                <button type="button" class="primary" id="submitAppBtn" style="display: none; background: var(--success); box-shadow: 0 4px 15px var(--success-glow);">
+                    Submit to AICTE Board <i class="fa-solid fa-circle-check"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

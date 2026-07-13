@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICTE Portal - Portal Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <!-- ================= Background ================= -->
+    <div class="background">
+        <div class="grid"></div>
+        <div class="gradient"></div>
+        <div class="particles">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <!-- ================= Header ================= -->
+    <header>
+        <div class="logo" onclick="window.location.href='index.html'">
+            <i class="fa-solid fa-building-columns"></i>
+            <h2>AICTE Portal</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="approval.html">Approval</a></li>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="institution.html">Institution</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </nav>
+        <div class="header-btn">
+            <a href="login.html" class="login">Login</a>
+            <a href="register.html" class="register">Register</a>
+        </div>
+    </header>
+
+    <!-- ================= Dashboard Workspace ================= -->
+    <section class="dashboard-workspace">
+        <div class="dashboard-header-bar">
+            <h2>Portal <span>Dashboard</span></h2>
+            
+            <div class="dashboard-actions">
+                <!-- Status Filter Dropdown -->
+                <div class="filter-wrapper">
+                    <i class="fa-solid fa-filter"></i>
+                    <select id="filterStatus">
+                        <option value="all">Filter Status: All</option>
+                        <option value="approved">Approved</option>
+                        <option value="pending">Pending</option>
+                        <option value="review">Under Review</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div>
+                <!-- Institutional Action Button Slot -->
+                <div id="createBtnBox"></div>
+            </div>
+        </div>
+
+        <!-- Table displaying Applications -->
+        <div class="applications-table-card">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Application ID</th>
+                            <th>College / Institution</th>
+                            <th>Submitted Date</th>
+                            <th>Status Badge</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appListTable">
+                        <!-- Dynamic list of applications rendered via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= Details Popup Modal Overlay ================= -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Application Verification File</h3>
+                <i class="fa-solid fa-xmark close-modal" title="Close Window"></i>
+            </div>
+            
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamically populated institutional details here -->
+            </div>
+            
+            <div class="modal-footer" id="modalFooter">
+                <!-- Action Buttons rendering here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

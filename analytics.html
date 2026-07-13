@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICTE Portal - Live Analytics</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Chart.js CDN for interactive graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- ================= Background ================= -->
+    <div class="background">
+        <div class="grid"></div>
+        <div class="gradient"></div>
+        <div class="particles">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <!-- ================= Header ================= -->
+    <header>
+        <div class="logo" onclick="window.location.href='index.html'">
+            <i class="fa-solid fa-building-columns"></i>
+            <h2>AICTE Portal</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="approval.html">Approval</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="institution.html">Institution</a></li>
+                <li><a href="analytics.html" class="active">Analytics</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </nav>
+        <div class="header-btn">
+            <a href="login.html" class="login">Login</a>
+            <a href="register.html" class="register">Register</a>
+        </div>
+    </header>
+
+    <!-- ================= Analytics Workspace ================= -->
+    <section class="analytics-workspace">
+        <div class="section-title" style="margin-bottom: 3rem;">
+            <h4>PORTAL METRICS</h4>
+            <h2>Live <span>Approval Analytics</span></h2>
+            <p>Real-time analytics covering AI validation confidence, regional caseloads, and status allocations.</p>
+        </div>
+
+        <!-- Summary Stat Cards -->
+        <div class="analytics-stats-grid">
+            <div class="analytics-stat-card">
+                <div class="icon-box"><i class="fa-solid fa-file-invoice"></i></div>
+                <div class="stat-info">
+                    <h4>Total Cases</h4>
+                    <h2 id="totalAppsStat">--</h2>
+                </div>
+            </div>
+
+            <div class="analytics-stat-card">
+                <div class="icon-box" style="background: var(--success-glow); border-color: var(--success);"><i class="fa-solid fa-circle-check" style="color: var(--success);"></i></div>
+                <div class="stat-info">
+                    <h4>Approved Institutions</h4>
+                    <h2 id="approvedAppsStat">--</h2>
+                </div>
+            </div>
+
+            <div class="analytics-stat-card">
+                <div class="icon-box" style="background: var(--pending-glow); border-color: var(--pending);"><i class="fa-solid fa-microchip" style="color: var(--pending);"></i></div>
+                <div class="stat-info">
+                    <h4>Avg. AI Accuracy</h4>
+                    <h2 id="avgConfidenceStat">--</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart Layout Grid -->
+        <div class="analytics-grid">
+            <!-- Left: Regional Distribution Chart -->
+            <div class="chart-card">
+                <h3>Regional Application Breakdown</h3>
+                <div class="chart-wrapper">
+                    <canvas id="regionChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Right: Status Distribution Doughnut -->
+            <div class="chart-card">
+                <h3>Approval Status Allocations</h3>
+                <div class="chart-wrapper">
+                    <canvas id="statusChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="analytics-grid full-width">
+            <!-- Center: Radar Chart for program types -->
+            <div class="chart-card">
+                <h3>Institutional Program Class Distribution</h3>
+                <div class="chart-wrapper" style="height: 380px;">
+                    <canvas id="typeChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

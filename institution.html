@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICTE Portal — Institution Profile</title>
+    <meta name="description" content="Full institution profile page showing all AICTE required data: address, infrastructure, programs, faculty, documents, finances, and audit log.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+/* ================================================================
+   INSTITUTION PROFILE — PAGE STYLES
+================================================================ */
+:root {
+    --tab-h: 56px;
+}
+
+/* ── Page Wrapper ── */
+.inst-page { padding: 100px 36px 60px; min-height: 100vh; }
+
+/* ── Auth Guard ── */
+.auth-guard {
+    display:none; flex-direction:column; align-items:center;
+    justify-content:center; min-height:65vh; gap:16px; text-align:center;
+}
+.auth-guard i { font-size:3.5rem; color:var(--text-muted); }
+.auth-guard h3 { font-size:1.5rem; color:var(--text-secondary); }
+.auth-guard p { color:var(--text-muted); max-width:320px; }
+.auth-guard a {
+    margin-top:8px; padding:12px 32px;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff; border-radius:12px; font-weight:600; text-decoration:none;
+    transition:var(--transition);
+}
+.auth-guard a:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,242,254,0.3); }
+
+/* ── Hero Banner ── */
+.inst-hero {
+    position:relative;
+    background:linear-gradient(135deg, rgba(0,242,254,0.07) 0%, rgba(127,0,255,0.1) 100%);
+    border:1px solid var(--border-glow);
+    border-radius:24px;
+    padding:40px 44px;
+    margin-bottom:28px;
+    backdrop-filter:var(--glass-blur);
+    overflow:hidden;
+    display:flex; align-items:center; gap:36px; flex-wrap:wrap;
+}
+.inst-hero::before {
+    content:'';
+    position:absolute; top:-80px; right:-80px;
+    width:360px; height:360px;
+    background:radial-gradient(circle, rgba(0,242,254,0.1) 0%, transparent 70%);
+    pointer-events:none;
+}
+.hero-avatar {
+    width:96px; height:96px; border-radius:50%; flex-shrink:0;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    display:flex; align-items:center; justify-content:center;
+    font-size:2.6rem; color:#fff;
+    box-shadow:0 0 40px rgba(0,242,254,0.35);
+    position:relative;
+}
+.hero-avatar .spin-ring {
+    position:absolute; inset:-4px; border-radius:50%;
+    border:3px solid transparent;
+    border-top-color:var(--success); border-right-color:var(--success);
+    animation:spinRing 3s linear infinite;
+}
+@keyframes spinRing { to { transform:rotate(360deg); } }
+
+.hero-info { flex:1; min-width:220px; }
+.hero-info h1 {
+    font-size:1.8rem; font-weight:800;
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    margin-bottom:4px;
+}
+.hero-info .sub { color:var(--text-secondary); font-size:0.9rem; margin-bottom:14px; }
+
+.hero-badges { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+.hbadge {
+    padding:4px 13px; border-radius:20px; font-size:0.72rem;
+    font-weight:600; letter-spacing:0.5px; text-transform:uppercase;
+}
+.hb-cyan   { background:rgba(0,242,254,0.12); color:var(--primary);   border:1px solid rgba(0,242,254,0.25); }
+.hb-green  { background:rgba(0,230,118,0.12); color:var(--success);   border:1px solid rgba(0,230,118,0.25); }
+.hb-purple { background:rgba(127,0,255,0.15); color:#b084ff;           border:1px solid rgba(127,0,255,0.3);  }
+.hb-amber  { background:rgba(255,179,0,0.12); color:var(--pending);   border:1px solid rgba(255,179,0,0.25); }
+.hb-red    { background:rgba(255,23,68,0.1);  color:var(--danger);    border:1px solid rgba(255,23,68,0.2);  }
+
+.hero-meta { display:flex; gap:28px; flex-wrap:wrap; }
+.hm-item .hm-label { color:var(--text-muted); font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; }
+.hm-item .hm-value { color:var(--text-primary); font-weight:600; font-size:0.92rem; }
+
+.hero-actions { display:flex; gap:10px; flex-wrap:wrap; }
+.btn-primary {
+    display:inline-flex; align-items:center; gap:7px;
+    padding:10px 22px; border-radius:10px; font-size:0.83rem; font-weight:600;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff; border:none; cursor:pointer; transition:var(--transition);
+    text-decoration:none;
+}
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,242,254,0.3); }
+.btn-ghost {
+    display:inline-flex; align-items:center; gap:7px;
+    padding:10px 20px; border-radius:10px; font-size:0.83rem; font-weight:600;
+    background:rgba(255,255,255,0.05); border:1px solid var(--border-color);
+    color:var(--text-secondary); cursor:pointer; transition:var(--transition);
+}
+.btn-ghost:hover { border-color:var(--primary); color:var(--primary); }
+
+/* ── KPI Stats Row ── */
+.kpi-row {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:16px; margin-bottom:24px;
+}
+.kpi-card {
+    background:var(--bg-card); border:1px solid var(--border-color);
+    border-radius:16px; padding:20px 16px; text-align:center;
+    backdrop-filter:var(--glass-blur); transition:var(--transition);
+    position:relative; overflow:hidden;
+}
+.kpi-card::after {
+    content:''; position:absolute; bottom:0; left:0; right:0;
+    height:2px; border-radius:0 0 16px 16px;
+}
+.kpi-card.c1::after { background:var(--primary); }
+.kpi-card.c2::after { background:var(--success); }
+.kpi-card.c3::after { background:#b084ff; }
+.kpi-card.c4::after { background:var(--pending); }
+.kpi-card.c5::after { background:var(--review); }
+.kpi-card.c6::after { background:var(--danger); }
+.kpi-card:hover { transform:translateY(-3px); border-color:var(--border-glow); }
+.kpi-icon {
+    width:42px; height:42px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem; margin:0 auto 10px;
+}
+.kpi-card.c1 .kpi-icon { background:rgba(0,242,254,0.12); color:var(--primary); }
+.kpi-card.c2 .kpi-icon { background:rgba(0,230,118,0.12); color:var(--success); }
+.kpi-card.c3 .kpi-icon { background:rgba(127,0,255,0.15); color:#b084ff; }
+.kpi-card.c4 .kpi-icon { background:rgba(255,179,0,0.12); color:var(--pending); }
+.kpi-card.c5 .kpi-icon { background:rgba(255,87,34,0.12); color:var(--review); }
+.kpi-card.c6 .kpi-icon { background:rgba(255,23,68,0.1);  color:var(--danger); }
+.kpi-num {
+    font-size:1.7rem; font-weight:800;
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+.kpi-label { color:var(--text-secondary); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.5px; }
+
+/* ── Tab Bar ── */
+.tab-bar {
+    display:flex; gap:4px; margin-bottom:24px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid var(--border-color);
+    border-radius:16px; padding:6px;
+    overflow-x:auto; flex-wrap:nowrap;
+}
+.tab-bar::-webkit-scrollbar { height:4px; }
+.tab-btn {
+    display:flex; align-items:center; gap:8px;
+    padding:10px 18px; border-radius:11px;
+    font-size:0.82rem; font-weight:600; white-space:nowrap;
+    background:transparent; border:none; color:var(--text-muted);
+    cursor:pointer; transition:var(--transition);
+    font-family:'Poppins',sans-serif;
+}
+.tab-btn i { font-size:0.9rem; }
+.tab-btn:hover { background:rgba(255,255,255,0.05); color:var(--text-secondary); }
+.tab-btn.active {
+    background:linear-gradient(135deg,rgba(0,242,254,0.15),rgba(127,0,255,0.15));
+    color:var(--primary); border:1px solid rgba(0,242,254,0.2);
+}
+
+/* ── Tab Panel ── */
+.tab-panel { display:none; animation:fadeIn 0.3s ease; }
+.tab-panel.active { display:block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── Glass Card ── */
+.g-card {
+    background:var(--bg-card); border:1px solid var(--border-color);
+    border-radius:20px; padding:28px; backdrop-filter:var(--glass-blur);
+    transition:var(--transition); margin-bottom:20px;
+}
+.g-card:hover { border-color:var(--border-glow); }
+.g-card:last-child { margin-bottom:0; }
+
+.section-title {
+    display:flex; align-items:center; gap:10px;
+    font-size:1rem; font-weight:700; color:var(--text-primary);
+    margin-bottom:20px; padding-bottom:14px;
+    border-bottom:1px solid var(--border-color);
+}
+.section-title i { color:var(--primary); }
+
+/* ── Profile Grid ── */
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+@media(max-width:760px){ .two-col { grid-template-columns:1fr; } }
+
+.info-row {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:11px 14px; border-radius:10px;
+    background:rgba(255,255,255,0.025);
+    border:1px solid rgba(255,255,255,0.04);
+    margin-bottom:8px;
+}
+.info-row:last-child { margin-bottom:0; }
+.info-label { color:var(--text-muted); font-size:0.8rem; display:flex; align-items:center; gap:8px; }
+.info-label i { color:var(--primary); width:15px; text-align:center; }
+.info-value { color:var(--text-primary); font-weight:500; font-size:0.85rem; text-align:right; max-width:60%; }
+
+/* ── Infra Grid ── */
+.infra-grid {
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:14px;
+}
+.infra-tile {
+    background:rgba(255,255,255,0.025);
+    border:1px solid rgba(255,255,255,0.05);
+    border-radius:14px; padding:16px 14px; text-align:center;
+    transition:var(--transition);
+}
+.infra-tile:hover { background:rgba(0,242,254,0.05); border-color:rgba(0,242,254,0.15); }
+.infra-tile .t-icon { font-size:1.6rem; margin-bottom:6px; }
+.infra-tile .t-val { font-size:1.2rem; font-weight:700; color:var(--primary); }
+.infra-tile .t-lbl { font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px; }
+
+/* ── Programs Table ── */
+.data-table { width:100%; border-collapse:collapse; }
+.data-table th {
+    text-align:left; padding:10px 14px;
+    color:var(--text-muted); font-size:0.73rem;
+    text-transform:uppercase; letter-spacing:0.5px;
+    border-bottom:1px solid var(--border-color);
+}
+.data-table td {
+    padding:13px 14px; color:var(--text-secondary);
+    font-size:0.83rem; border-bottom:1px solid rgba(255,255,255,0.025);
+}
+.data-table tr:last-child td { border-bottom:none; }
+.data-table tr:hover td { background:rgba(0,242,254,0.03); color:var(--text-primary); }
+.data-table .code-badge {
+    display:inline-block; padding:3px 10px; border-radius:6px;
+    background:rgba(0,242,254,0.1); color:var(--primary);
+    font-size:0.72rem; font-weight:700;
+}
+
+/* ── Faculty Cards ── */
+.faculty-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
+.faculty-card {
+    background:rgba(255,255,255,0.025);
+    border:1px solid rgba(255,255,255,0.05);
+    border-radius:16px; padding:20px;
+    display:flex; gap:16px; align-items:flex-start;
+    transition:var(--transition);
+}
+.faculty-card:hover { background:rgba(0,242,254,0.05); border-color:rgba(0,242,254,0.15); }
+.f-avatar {
+    width:48px; height:48px; border-radius:50%; flex-shrink:0;
+    background:linear-gradient(135deg,rgba(0,242,254,0.2),rgba(127,0,255,0.2));
+    border:1px solid var(--border-glow);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--primary); font-size:1.2rem;
+}
+.f-info .f-name { font-weight:700; font-size:0.9rem; color:var(--text-primary); }
+.f-info .f-desig { font-size:0.75rem; color:var(--primary); margin:2px 0 4px; }
+.f-info .f-dept  { font-size:0.75rem; color:var(--text-muted); margin-bottom:6px; }
+.f-info .f-qual  { font-size:0.75rem; color:var(--text-secondary); margin-bottom:8px; }
+.f-tags { display:flex; gap:6px; flex-wrap:wrap; }
+.f-tag {
+    font-size:0.68rem; padding:3px 9px; border-radius:8px; font-weight:600;
+    background:rgba(127,0,255,0.12); color:#b084ff;
+    border:1px solid rgba(127,0,255,0.2);
+}
+.f-tag.exp { background:rgba(0,230,118,0.1); color:var(--success); border-color:rgba(0,230,118,0.2); }
+
+/* ── Documents ── */
+.doc-filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+.doc-filter-btn {
+    padding:5px 14px; border-radius:20px; font-size:0.75rem; font-weight:600;
+    background:rgba(255,255,255,0.04); border:1px solid var(--border-color);
+    color:var(--text-muted); cursor:pointer; transition:var(--transition);
+    font-family:'Poppins',sans-serif;
+}
+.doc-filter-btn.active,
+.doc-filter-btn:hover { background:rgba(0,242,254,0.1); color:var(--primary); border-color:rgba(0,242,254,0.2); }
+
+.doc-card {
+    display:flex; align-items:center; gap:16px;
+    padding:14px 18px; border-radius:12px;
+    background:rgba(255,255,255,0.025);
+    border:1px solid rgba(255,255,255,0.04);
+    margin-bottom:10px; transition:var(--transition);
+}
+.doc-card:last-child { margin-bottom:0; }
+.doc-card:hover { background:rgba(0,242,254,0.04); border-color:rgba(0,242,254,0.12); }
+.doc-icon { font-size:1.6rem; color:#ff4444; flex-shrink:0; }
+.doc-details { flex:1; }
+.doc-name { font-weight:600; font-size:0.87rem; color:var(--text-primary); margin-bottom:3px; }
+.doc-meta { font-size:0.74rem; color:var(--text-muted); display:flex; gap:14px; flex-wrap:wrap; }
+.doc-meta span { display:flex; align-items:center; gap:4px; }
+.ocr-badge {
+    padding:4px 12px; border-radius:10px; font-size:0.72rem; font-weight:600;
+    white-space:nowrap;
+}
+.ocr-verified { background:rgba(0,230,118,0.1); color:var(--success); border:1px solid rgba(0,230,118,0.25); }
+.ocr-scanning { background:rgba(255,179,0,0.1); color:var(--pending); border:1px solid rgba(255,179,0,0.25); }
+.confidence-bar-wrap { display:flex; align-items:center; gap:8px; margin-top:6px; }
+.confidence-bar-bg {
+    flex:1; height:4px; border-radius:4px;
+    background:rgba(255,255,255,0.06);
+}
+.confidence-bar-fill { height:100%; border-radius:4px; background:linear-gradient(90deg,var(--primary),var(--secondary)); }
+.confidence-pct { font-size:0.72rem; color:var(--primary); font-weight:600; white-space:nowrap; }
+
+/* ── Finances ── */
+.finance-summary {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:16px; margin-bottom:20px;
+}
+.fin-card {
+    background:rgba(255,255,255,0.025);
+    border:1px solid rgba(255,255,255,0.05);
+    border-radius:14px; padding:18px;
+    text-align:center;
+}
+.fin-card .fin-num { font-size:1.5rem; font-weight:800; color:var(--success); }
+.fin-card .fin-lbl { font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px; margin-top:4px; }
+
+.txn-row {
+    display:flex; align-items:center; gap:16px;
+    padding:14px 18px; border-radius:12px;
+    background:rgba(255,255,255,0.025);
+    border:1px solid rgba(255,255,255,0.04);
+    margin-bottom:10px; transition:var(--transition);
+}
+.txn-row:hover { background:rgba(0,230,118,0.04); border-color:rgba(0,230,118,0.12); }
+.txn-icon {
+    width:40px; height:40px; border-radius:10px; flex-shrink:0;
+    background:rgba(0,230,118,0.1); color:var(--success);
+    display:flex; align-items:center; justify-content:center; font-size:1rem;
+}
+.txn-info { flex:1; }
+.txn-id { font-weight:600; font-size:0.85rem; color:var(--text-primary); }
+.txn-meta { font-size:0.74rem; color:var(--text-muted); margin-top:2px; }
+.txn-amount { font-size:1rem; font-weight:800; color:var(--success); white-space:nowrap; }
+.txn-status {
+    padding:3px 11px; border-radius:10px; font-size:0.7rem; font-weight:600;
+    background:rgba(0,230,118,0.1); color:var(--success); border:1px solid rgba(0,230,118,0.2);
+}
+
+.bank-info { display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; }
+.bank-chip {
+    display:flex; align-items:center; gap:8px;
+    padding:10px 16px; border-radius:10px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.05);
+    font-size:0.8rem; color:var(--text-secondary);
+}
+.bank-chip i { color:var(--primary); }
+
+/* ── Audit Log ── */
+.audit-timeline { position:relative; padding-left:32px; }
+.audit-timeline::before {
+    content:''; position:absolute; left:12px; top:0; bottom:0;
+    width:2px; background:linear-gradient(to bottom,var(--primary),rgba(127,0,255,0.3));
+}
+.audit-item {
+    position:relative; margin-bottom:20px;
+}
+.audit-item::before {
+    content:''; position:absolute; left:-26px; top:14px;
+    width:12px; height:12px; border-radius:50%;
+    border:2px solid var(--bg-dark);
+}
+.audit-item.auth::before       { background:var(--primary); }
+.audit-item.submission::before { background:#b084ff; }
+.audit-item.payment::before    { background:var(--success); }
+.audit-item.ai::before         { background:var(--pending); }
+.audit-item.review::before     { background:var(--review); }
+.audit-item.decision::before   { background:var(--danger); }
+
+.audit-card {
+    background:rgba(255,255,255,0.025);
+    border:1px solid rgba(255,255,255,0.04);
+    border-radius:12px; padding:14px 18px;
+    transition:var(--transition);
+}
+.audit-card:hover { background:rgba(0,242,254,0.04); border-color:rgba(0,242,254,0.12); }
+.audit-header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; }
+.audit-action { font-weight:700; font-size:0.88rem; color:var(--text-primary); }
+.audit-time { font-size:0.74rem; color:var(--text-muted); }
+.audit-by { font-size:0.76rem; color:var(--primary); margin:4px 0; }
+.audit-note { font-size:0.8rem; color:var(--text-secondary); }
+.audit-cat {
+    display:inline-block; padding:2px 10px; border-radius:8px;
+    font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;
+    margin-bottom:4px;
+}
+.cat-auth       { background:rgba(0,242,254,0.12); color:var(--primary); }
+.cat-submission { background:rgba(127,0,255,0.15); color:#b084ff; }
+.cat-payment    { background:rgba(0,230,118,0.1);  color:var(--success); }
+.cat-ai         { background:rgba(255,179,0,0.1);  color:var(--pending); }
+.cat-review     { background:rgba(255,87,34,0.1);  color:var(--review); }
+.cat-decision   { background:rgba(255,23,68,0.1);  color:var(--danger); }
+
+/* ── Compliance Score (Overview tab) ── */
+.overview-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px; }
+@media(max-width:760px){ .overview-grid { grid-template-columns:1fr; } }
+
+.compliance-ring-wrap {
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+}
+.c-ring {
+    width:130px; height:130px; border-radius:50%;
+    background:conic-gradient(var(--success) 0%, var(--success) calc(var(--pct)*1%), rgba(255,255,255,0.04) calc(var(--pct)*1%));
+    display:flex; align-items:center; justify-content:center; position:relative;
+}
+.c-ring::after {
+    content:''; position:absolute;
+    width:96px; height:96px; border-radius:50%;
+    background:var(--bg-dark);
+}
+.c-ring .ring-num { position:relative; z-index:1; font-size:1.5rem; font-weight:800; color:var(--success); }
+.c-ring-label { color:var(--text-muted); font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; }
+
+.check-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.check-item {
+    display:flex; align-items:center; gap:10px;
+    padding:10px 14px; border-radius:10px;
+    background:rgba(255,255,255,0.02);
+    border:1px solid rgba(255,255,255,0.04);
+}
+.check-dot {
+    width:30px; height:30px; border-radius:8px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:0.85rem;
+}
+.check-dot.pass { background:rgba(0,230,118,0.12); color:var(--success); }
+.check-dot.warn { background:rgba(255,179,0,0.12);  color:var(--pending); }
+.check-dot.fail { background:rgba(255,23,68,0.1);   color:var(--danger);  }
+.check-name { font-size:0.8rem; font-weight:600; color:var(--text-primary); }
+.check-res  { font-size:0.7rem; color:var(--text-muted); }
+
+/* ── Notification Toast ── */
+.toast-wrap { position:fixed; bottom:24px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:8px; }
+.toast {
+    padding:13px 22px; border-radius:12px; font-size:0.86rem; font-weight:600;
+    color:#fff; box-shadow:0 8px 32px rgba(0,0,0,0.4);
+    animation:slideUp 0.3s ease; max-width:320px;
+}
+@keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+.toast.success { background:rgba(0,180,94,0.92); }
+.toast.error   { background:rgba(200,23,68,0.92); }
+
+/* ── Responsive ── */
+@media(max-width:640px){
+    .inst-page { padding:90px 16px 50px; }
+    .inst-hero { flex-direction:column; text-align:center; padding:28px 20px; }
+    .hero-badges,.hero-meta,.hero-actions { justify-content:center; }
+    .inst-hero::before { display:none; }
+    .check-grid { grid-template-columns:1fr; }
+}
+
+@media print {
+    header, .background, .tab-bar, .hero-actions { display:none!important; }
+    .inst-page { padding:20px; }
+    .tab-panel { display:block!important; margin-bottom:30px; }
+}
+</style>
+</head>
+<body>
+
+<!-- =========== Background =========== -->
+<div class="background">
+    <div class="grid"></div><div class="gradient"></div>
+    <div class="particles">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
+</div>
+
+<!-- =========== Header =========== -->
+<header>
+    <div class="logo" onclick="window.location.href='index.html'">
+        <i class="fa-solid fa-building-columns"></i><h2>AICTE Portal</h2>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="approval.html">Approval</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="institution.html" class="active">Institution</a></li>
+            <li><a href="analytics.html">Analytics</a></li>
+            <li><a href="support.html">Support</a></li>
+        </ul>
+    </nav>
+    <div class="header-btn" id="headerBtns">
+        <a href="login.html" class="login">Login</a>
+        <a href="register.html" class="register">Register</a>
+    </div>
+</header>
+
+<!-- =========== Page Body =========== -->
+<main class="inst-page">
+
+    <!-- Auth Guard -->
+    <div class="auth-guard" id="authGuard">
+        <i class="fa-solid fa-lock"></i>
+        <h3>Authentication Required</h3>
+        <p>You must be logged in to view the Institution Profile page.</p>
+        <a href="login.html"><i class="fa-solid fa-right-to-bracket"></i> Go to Login</a>
+    </div>
+
+    <!-- Main Content (shown after login) -->
+    <div id="instContent" style="display:none">
+
+        <!-- ─── Hero Banner ─── -->
+        <div class="inst-hero">
+            <div class="hero-avatar">
+                <i class="fa-solid fa-school"></i>
+                <div class="spin-ring"></div>
+            </div>
+            <div class="hero-info">
+                <h1 id="heroName">—</h1>
+                <p class="sub" id="heroSub">—</p>
+                <div class="hero-badges" id="heroBadges"></div>
+                <div class="hero-meta" id="heroMeta"></div>
+            </div>
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="window.print()">
+                    <i class="fa-solid fa-print"></i> Print Profile
+                </button>
+                <button class="btn-ghost" id="logoutBtn">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- ─── KPI Cards ─── -->
+        <div class="kpi-row" id="kpiRow"></div>
+
+        <!-- ─── Tab Bar ─── -->
+        <div class="tab-bar" id="tabBar">
+            <button class="tab-btn active" data-tab="overview"        id="tb-overview">   <i class="fa-solid fa-gauge-high"></i>       Overview     </button>
+            <button class="tab-btn"        data-tab="profile"         id="tb-profile">    <i class="fa-solid fa-id-card"></i>          Profile      </button>
+            <button class="tab-btn"        data-tab="infrastructure"  id="tb-infra">      <i class="fa-solid fa-building"></i>         Infrastructure</button>
+            <button class="tab-btn"        data-tab="programs"        id="tb-programs">   <i class="fa-solid fa-book-open"></i>        Programs     </button>
+            <button class="tab-btn"        data-tab="faculty"         id="tb-faculty">    <i class="fa-solid fa-chalkboard-user"></i>  Faculty      </button>
+            <button class="tab-btn"        data-tab="documents"       id="tb-docs">       <i class="fa-solid fa-folder-open"></i>      Documents    </button>
+            <button class="tab-btn"        data-tab="finances"        id="tb-finances">   <i class="fa-solid fa-wallet"></i>           Finances     </button>
+            <button class="tab-btn"        data-tab="audit"           id="tb-audit">      <i class="fa-solid fa-timeline"></i>         Audit Log    </button>
+        </div>
+
+        <!-- ─── TAB 1: Overview ─── -->
+        <div class="tab-panel active" id="panel-overview">
+            <div id="complianceAuditorContainer"></div>
+            <div class="overview-grid">
+                <div class="g-card">
+                    <div class="section-title"><i class="fa-solid fa-shield-check"></i> Compliance Score</div>
+                    <div style="display:flex;align-items:center;gap:32px;flex-wrap:wrap;">
+                        <div class="compliance-ring-wrap">
+                            <div class="c-ring" id="complianceRing" style="--pct:0">
+                                <span class="ring-num" id="ringNum">0%</span>
+                            </div>
+                            <span class="c-ring-label">Compliance Score</span>
+                        </div>
+                        <div style="flex:1;min-width:180px;">
+                            <p style="color:var(--text-secondary);font-size:0.84rem;line-height:1.6;">
+                                Automated compliance check validates infrastructure, faculty strength, document completeness, accreditation status, and financial readiness against AICTE norms.
+                            </p>
+                            <div style="margin-top:14px;display:flex;gap:14px;flex-wrap:wrap;">
+                                <span style="font-size:0.8rem;color:var(--success);"><i class="fa-solid fa-circle-check"></i> Passed Checks: <b id="passCount">—</b></span>
+                                <span style="font-size:0.8rem;color:var(--pending);"><i class="fa-solid fa-triangle-exclamation"></i> Warnings: <b id="warnCount">—</b></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="g-card">
+                    <div class="section-title"><i class="fa-solid fa-list-check"></i> Checklist</div>
+                    <div class="check-grid" id="checkGrid"></div>
+                </div>
+            </div>
+            <div class="g-card">
+                <div class="section-title"><i class="fa-solid fa-circle-info"></i> Quick Institution Summary</div>
+                <div id="overviewSummary" class="two-col"></div>
+            </div>
+        </div>
+
+        <!-- ─── TAB 2: Profile ─── -->
+        <div class="tab-panel" id="panel-profile">
+            <div class="two-col">
+                <div class="g-card">
+                    <div class="section-title"><i class="fa-solid fa-location-dot"></i> Address & Location</div>
+                    <div id="addressRows"></div>
+                </div>
+                <div class="g-card">
+                    <div class="section-title"><i class="fa-solid fa-phone"></i> Contact Information</div>
+                    <div id="contactRows"></div>
+                </div>
+            </div>
+            <div class="g-card">
+                <div class="section-title"><i class="fa-solid fa-certificate"></i> Accreditation & Affiliation</div>
+                <div id="accredRows" class="two-col"></div>
+            </div>
+        </div>
+
+        <!-- ─── TAB 3: Infrastructure ─── -->
+        <div class="tab-panel" id="panel-infrastructure">
+            <!-- 3D Campus Blueprint -->
+            <div class="g-card">
+                <div class="section-title">
+                    <i class="fa-solid fa-map-location-dot"></i> Interactive 3D Campus Blueprint
+                </div>
+                <div class="map-viewport">
+                    <div class="isometric-grid" id="isometricGrid"></div>
+                    <div class="map-tooltip" id="mapTooltip">
+                        <h4 id="tooltipTitle">Block A</h4>
+                        <p id="tooltipDesc">Administrative Building</p>
+                        <div class="metrics">
+                            <div class="metric-item">
+                                <span class="metric-label">Area</span>
+                                <span class="metric-val" id="tooltipArea">4,500 sq m</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">AI Status</span>
+                                <span class="metric-val" id="tooltipStatus">Compliant</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="g-card">
+                <div class="section-title"><i class="fa-solid fa-layer-group"></i> Campus Infrastructure Overview</div>
+                <div class="infra-grid" id="infraGrid"></div>
+            </div>
+            <div class="two-col">
+                <div class="g-card">
+                    <div class="section-title"><i class="fa-solid fa-building-columns"></i> Academic Facilities</div>
+                    <div id="acadFacRows"></div>
+                </div>
+                <div class="g-card">
+                    <div class="section-title"><i class="fa-solid fa-dumbbell"></i> Amenities & Utilities</div>
+                    <div id="amenitiesRows"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── TAB 4: Programs ─── -->
+        <div class="tab-panel" id="panel-programs">
+            <div class="g-card">
+                <div class="section-title"><i class="fa-solid fa-graduation-cap"></i> Approved Programs & Courses</div>
+                <div style="overflow-x:auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Programme Name</th>
+                                <th>Duration</th>
+                                <th>Annual Intake</th>
+                                <th>Annual Fee (INR)</th>
+                                <th>Approved Year</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="programsBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── TAB 5: Faculty ─── -->
+        <div class="tab-panel" id="panel-faculty">
+            <div class="g-card">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px;">
+                    <div class="section-title" style="margin-bottom:0;border:none;padding:0;">
+                        <i class="fa-solid fa-users"></i> Faculty Roster
+                    </div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;" id="deptFilters"></div>
+                </div>
+                <div class="faculty-grid" id="facultyGrid"></div>
+            </div>
+        </div>
+
+        <!-- ─── TAB 6: Documents ─── -->
+        <div class="tab-panel" id="panel-documents">
+            <div class="g-card">
+                <div class="section-title"><i class="fa-solid fa-file-shield"></i> Submitted Documents & OCR Verification</div>
+                <div class="doc-filters" id="docFilters"></div>
+                <div id="docList"></div>
+            </div>
+        </div>
+
+        <!-- ─── TAB 7: Finances ─── -->
+        <div class="tab-panel" id="panel-finances">
+            <div class="g-card">
+                <div class="section-title"><i class="fa-solid fa-chart-pie"></i> Fee Payment Summary</div>
+                <div class="finance-summary" id="finSummary"></div>
+            </div>
+            <div class="g-card">
+                <div class="section-title"><i class="fa-solid fa-receipt"></i> Processing Fee Transactions</div>
+                <div id="txnList"></div>
+            </div>
+            <div class="g-card">
+                <div class="section-title"><i class="fa-solid fa-building-columns"></i> Bank Details</div>
+                <div class="bank-info" id="bankInfo"></div>
+            </div>
+        </div>
+
+        <!-- ─── TAB 8: Audit Log ─── -->
+        <div class="tab-panel" id="panel-audit">
+            <div class="g-card">
+                <div class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> Complete Audit Trail</div>
+                <div class="audit-timeline" id="auditTimeline"></div>
+            </div>
+        </div>
+
+    </div><!-- /#instContent -->
+</main>
+
+<!-- =========== Toast Container =========== -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<!-- Simulated UIDAI Notification Hub -->
+<div id="simulatedNotificationHub" style="position: fixed; top: -110px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 480px; background: rgba(13, 20, 45, 0.95); border: 1.5px solid var(--primary); border-radius: 16px; padding: 16px 20px; box-shadow: 0 12px 36px rgba(0,0,0,0.5), 0 0 20px rgba(0,242,254,0.2); backdrop-filter: blur(12px); z-index: 10000; transition: top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; gap: 15px;">
+    <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(0, 242, 254, 0.12); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.25rem; flex-shrink: 0; box-shadow: 0 0 15px rgba(0,242,254,0.3);">
+        <i class="fa-solid fa-message"></i>
+    </div>
+    <div style="flex: 1; min-width: 0;">
+        <div style="font-weight: 700; color: #fff; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center;">
+            <span>Govt UIDAI Aadhaar Gateway</span>
+            <span style="font-size: 0.7rem; color: var(--text-muted); font-weight: 500;">Just now</span>
+        </div>
+        <div style="color: var(--text-secondary); font-size: 0.78rem; margin-top: 3px; line-height: 1.4;" id="notificationText">
+            Aadhaar Verification OTP is <strong>######</strong>. Valid for 10 minutes.
+        </div>
+    </div>
+    <i class="fa-solid fa-xmark" style="color: var(--text-muted); cursor: pointer; font-size: 0.9rem;" onclick="document.getElementById('simulatedNotificationHub').style.top = '-110px'"></i>
+</div>
+
+<!-- Aadhaar Verification Modal -->
+<div class="modal-overlay" id="aadhaarModal">
+    <div class="modal-card" style="max-width: 400px; padding: 2.5rem; text-align: center; border: 1.5px solid var(--border-color); background: #0d142d;">
+        <div style="font-size: 3rem; color: var(--primary); margin-bottom: 1.2rem;">
+            <i class="fa-solid fa-fingerprint"></i>
+        </div>
+        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; color: #fff;">Aadhaar Biometric e-Sign</h3>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1.5rem;">
+            Sending Aadhaar Verification OTP to the registered mobile number of <strong id="aadhaarFacultyName">—</strong>...
+        </p>
+        
+        <form id="aadhaarForm">
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+                <div class="input-wrapper">
+                    <input type="text" id="aadhaarOtp" maxlength="6" placeholder="Enter 6-digit OTP" required autocomplete="off" style="text-align: center; letter-spacing: 4px; font-weight: 700; font-size: 1.25rem; padding: 0.9rem 1rem;">
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 12px; margin-top: 1.5rem;">
+                <button type="button" class="btn-ghost" id="closeAadhaarModal" style="flex: 1; justify-content: center;">Cancel</button>
+                <button type="submit" class="btn-primary" style="flex: 1; justify-content: center;">Verify & Sign</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+/* ================================================================
+   INSTITUTION PROFILE — FULL CONTROLLER
+================================================================ */
+
+// ── Helpers ──────────────────────────────────────────────────────
+function getUser() {
+    try { return JSON.parse(localStorage.getItem('currentUser')); } catch(e) { return null; }
+}
+
+function fmt(n) {
+    return n?.toLocaleString('en-IN') ?? '—';
+}
+
+function fmtRs(n) {
+    return n != null ? '₹' + Number(n).toLocaleString('en-IN') : '—';
+}
+
+function boolBadge(v, yes='Available', no='Not Available') {
+    return v
+        ? `<span style="color:var(--success);font-weight:600;"><i class="fa-solid fa-check"></i> ${yes}</span>`
+        : `<span style="color:var(--text-muted);"><i class="fa-solid fa-xmark"></i> ${no}</span>`;
+}
+
+function statusPill(s) {
+    if (s === 'approved') return `<span class="hbadge hb-green">✓ Approved</span>`;
+    if (s === 'pending')  return `<span class="hbadge hb-amber">⏳ Pending</span>`;
+    if (s === 'rejected') return `<span class="hbadge hb-red">✗ Rejected</span>`;
+    return `<span class="hbadge hb-cyan">${s}</span>`;
+}
+
+function infoRow(icon, label, value) {
+    return `
+      <div class="info-row">
+        <span class="info-label"><i class="fa-solid ${icon}"></i>${label}</span>
+        <span class="info-value">${value ?? '—'}</span>
+      </div>`;
+}
+
+function infraTile(icon, val, label) {
+    return `
+      <div class="infra-tile">
+        <div class="t-icon">${icon}</div>
+        <div class="t-val">${val ?? '—'}</div>
+        <div class="t-lbl">${label}</div>
+      </div>`;
+}
+
+function toast(msg, type = 'success') {
+    const el = document.createElement('div');
+    el.className = `toast ${type}`;
+    el.textContent = (type === 'success' ? '✓  ' : '✕  ') + msg;
+    document.getElementById('toastWrap').appendChild(el);
+    setTimeout(() => el.remove(), 3500);
+}
+
+// ── Tab Switching ─────────────────────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    });
+});
+
+// ── Render Functions ──────────────────────────────────────────────
+
+function renderHero(p, apps) {
+    document.getElementById('heroName').textContent = p.name || p.email;
+    document.getElementById('heroSub').textContent  = `${p.email}  ·  Est. ${p.established || '—'}  ·  ${p.address?.city || ''}, ${p.address?.state || ''}`;
+
+    document.getElementById('heroBadges').innerHTML = `
+        <span class="hbadge hb-cyan"><i class="fa-solid fa-circle" style="font-size:7px;margin-right:4px;"></i>Institution</span>
+        <span class="hbadge hb-green">✓ Active</span>
+        <span class="hbadge hb-purple">${p.type || 'Engineering'}</span>
+        ${p.naacGrade ? `<span class="hbadge hb-amber">NAAC ${p.naacGrade}</span>` : ''}
+        ${p.nbaAccredited ? `<span class="hbadge hb-cyan">NBA Accredited</span>` : ''}
+        <span class="hbadge hb-purple">${p.autonomyStatus || 'Affiliated'}</span>
+    `;
+
+    document.getElementById('heroMeta').innerHTML = `
+        <div class="hm-item"><span class="hm-label">Region</span><span class="hm-value">${p.address?.region || '—'}</span></div>
+        <div class="hm-item"><span class="hm-label">Affiliation</span><span class="hm-value">${(p.affiliation || '—').split(' ')[0]}</span></div>
+        <div class="hm-item"><span class="hm-label">Applications</span><span class="hm-value">${apps.length}</span></div>
+        <div class="hm-item"><span class="hm-label">NIRF Rank</span><span class="hm-value">${p.nirfRank ? '#' + p.nirfRank : '—'}</span></div>
+    `;
+}
+
+function renderKPI(p, apps) {
+    const approved  = apps.filter(a => a.status === 'approved').length;
+    const pending   = apps.filter(a => a.status === 'pending' || a.status === 'review').length;
+    const allFaculty = p.faculty?.length || 0;
+    const allPrograms = p.programs?.length || 0;
+    const allDocs     = p.documents?.length || 0;
+    const totalPaid   = p.finances?.totalPaid || 0;
+
+    document.getElementById('kpiRow').innerHTML = `
+        <div class="kpi-card c1"><div class="kpi-icon"><i class="fa-solid fa-file-contract"></i></div><div class="kpi-num">${apps.length}</div><div class="kpi-label">Total Applications</div></div>
+        <div class="kpi-card c2"><div class="kpi-icon"><i class="fa-solid fa-circle-check"></i></div><div class="kpi-num">${approved}</div><div class="kpi-label">Approved</div></div>
+        <div class="kpi-card c4"><div class="kpi-icon"><i class="fa-solid fa-clock"></i></div><div class="kpi-num">${pending}</div><div class="kpi-label">Pending / Review</div></div>
+        <div class="kpi-card c3"><div class="kpi-icon"><i class="fa-solid fa-graduation-cap"></i></div><div class="kpi-num">${allPrograms}</div><div class="kpi-label">Programs</div></div>
+        <div class="kpi-card c5"><div class="kpi-icon"><i class="fa-solid fa-users"></i></div><div class="kpi-num">${allFaculty}</div><div class="kpi-label">Faculty Members</div></div>
+        <div class="kpi-card c6"><div class="kpi-icon"><i class="fa-solid fa-file-pdf"></i></div><div class="kpi-num">${allDocs}</div><div class="kpi-label">Documents</div></div>
+    `;
+}
+
+function renderOverview(p, apps) {
+    // Compliance checks
+    const checks = [
+        { name: 'Land & Building', result: 'Verified',  ok: true,  icon: 'fa-map' },
+        { name: 'Fire Safety',     result: 'Certified', ok: true,  icon: 'fa-fire-extinguisher' },
+        { name: 'Faculty Strength',result: (p.faculty?.length >= 4) ? 'Adequate' : 'Insufficient', ok: p.faculty?.length >= 4, icon: 'fa-users' },
+        { name: 'Document OCR',    result: (p.documents?.filter(d => d.ocrStatus === 'Verified').length > 0) ? 'Verified' : 'Pending', ok: p.documents?.some(d => d.ocrStatus === 'Verified'), icon: 'fa-robot' },
+        { name: 'Accreditation',   result: p.naacGrade ? 'NAAC ' + p.naacGrade : 'Pending', ok: !!p.naacGrade, icon: 'fa-certificate' },
+        { name: 'NBA Status',      result: p.nbaAccredited ? 'Accredited' : 'Not Accredited', ok: p.nbaAccredited, icon: 'fa-award' },
+        { name: 'Fee Payment',     result: (p.finances?.totalPaid > 0) ? 'Paid' : 'Pending', ok: p.finances?.totalPaid > 0, icon: 'fa-wallet' },
+        { name: 'Programs Approved', result: (p.programs?.some(pr => pr.approvalStatus === 'approved')) ? 'Yes' : 'No', ok: p.programs?.some(pr => pr.approvalStatus === 'approved'), icon: 'fa-book-open' },
+    ];
+
+    const passed = checks.filter(c => c.ok).length;
+    const pct    = Math.round((passed / checks.length) * 100);
+
+    document.getElementById('complianceRing').style.setProperty('--pct', pct);
+    document.getElementById('ringNum').textContent  = pct + '%';
+    document.getElementById('passCount').textContent = passed;
+    document.getElementById('warnCount').textContent  = checks.length - passed;
+
+    document.getElementById('checkGrid').innerHTML = checks.map(c => `
+        <div class="check-item">
+            <div class="check-dot ${c.ok ? 'pass' : 'warn'}">
+                <i class="fa-solid ${c.icon}"></i>
+            </div>
+            <div>
+                <div class="check-name">${c.name}</div>
+                <div class="check-res">${c.result}</div>
+            </div>
+        </div>
+    `).join('');
+
+    const latestApp = apps.length > 0 ? apps[apps.length - 1] : {};
+    document.getElementById('overviewSummary').innerHTML = `
+        <div>
+            ${infoRow('fa-building',      'Institution Name',      p.name)}
+            ${infoRow('fa-code',          'Short Name',            p.shortName || '—')}
+            ${infoRow('fa-tags',          'Institution Type',      p.type)}
+            ${infoRow('fa-calendar',      'Established Year',      p.established)}
+            ${infoRow('fa-link',          'Affiliation',           p.affiliation)}
+            ${infoRow('fa-star',          'Autonomy Status',       p.autonomyStatus)}
+        </div>
+        <div>
+            ${infoRow('fa-certificate',   'NAAC Grade',            p.naacGrade + ' (Score: ' + p.naacScore + ')')}
+            ${infoRow('fa-award',         'NBA Accreditation',     p.nbaAccredited ? 'Yes' : 'No')}
+            ${infoRow('fa-ranking-star',  'NIRF Rank',             p.nirfRank ? '#' + p.nirfRank : '—')}
+            ${infoRow('fa-location-dot',  'Region',                p.address?.region)}
+            ${infoRow('fa-city',          'City',                  p.address?.city)}
+            ${infoRow('fa-map-pin',       'State',                 p.address?.state)}
+        </div>
+    `;
+}
+
+function renderProfile(p) {
+    document.getElementById('addressRows').innerHTML = `
+        ${infoRow('fa-road',        'Street Address', p.address?.street)}
+        ${infoRow('fa-city',        'City',           p.address?.city)}
+        ${infoRow('fa-map',         'State',          p.address?.state)}
+        ${infoRow('fa-mailbox',     'Pincode',        p.address?.pincode)}
+        ${infoRow('fa-compass',     'Region',         p.address?.region)}
+    `;
+
+    document.getElementById('contactRows').innerHTML = `
+        ${infoRow('fa-phone',           'Primary Phone',    p.contact?.phone)}
+        ${infoRow('fa-phone-flip',      'Alternate Phone',  p.contact?.altPhone)}
+        ${infoRow('fa-fax',             'Fax',              p.contact?.fax)}
+        ${infoRow('fa-envelope',        'Official Email',   p.contact?.email)}
+        ${infoRow('fa-globe',           'Website',          p.contact?.website)}
+        ${infoRow('fa-user-tie',        'Principal Name',   p.contact?.principalName)}
+        ${infoRow('fa-mobile-screen',   'Principal Phone',  p.contact?.principalPhone)}
+        ${infoRow('fa-paper-plane',     'Principal Email',  p.contact?.principalEmail)}
+    `;
+
+    document.getElementById('accredRows').innerHTML = `
+        <div>
+            ${infoRow('fa-link',          'University Affiliation', p.affiliation)}
+            ${infoRow('fa-star',          'Autonomy Status',        p.autonomyStatus)}
+            ${infoRow('fa-certificate',   'NAAC Grade',             p.naacGrade)}
+            ${infoRow('fa-percent',       'NAAC Score',             p.naacScore)}
+        </div>
+        <div>
+            ${infoRow('fa-award',         'NBA Accreditation',   p.nbaAccredited ? 'Yes — Accredited' : 'No')}
+            ${infoRow('fa-ranking-star',  'NIRF Rank',           p.nirfRank ? '#' + p.nirfRank + ' (National)' : '—')}
+            ${infoRow('fa-calendar',      'Established',         p.established)}
+            ${infoRow('fa-tag',           'Institution Code',    p.shortName || '—')}
+        </div>
+    `;
+}
+
+function renderInfrastructure(p) {
+    const inf = p.infrastructure || {};
+    document.getElementById('infraGrid').innerHTML = [
+        infraTile('🏫', inf.classrooms,    'Classrooms'),
+        infraTile('🔬', inf.engineeringLabs, 'Engg. Labs'),
+        infraTile('💻', inf.computerLabs,  'Computer Labs'),
+        infraTile('🔭', inf.researchLabs,  'Research Labs'),
+        infraTile('📚', fmt(inf.libraryBooks), 'Library Books'),
+        infraTile('🪑', fmt(inf.librarySeats), 'Library Seats'),
+        infraTile('👦', fmt(inf.hostelBoys), 'Hostel (Boys)'),
+        infraTile('👧', fmt(inf.hostelGirls), 'Hostel (Girls)'),
+        infraTile('🎭', fmt(inf.auditoriumCapacity), 'Auditorium Seats'),
+        infraTile('📡', inf.internetBandwidth, 'Internet Speed'),
+        infraTile('🔒', inf.cctvCount, 'CCTV Cameras'),
+        infraTile('⚡', inf.generatorBackup, 'Generator Backup'),
+    ].join('');
+
+    document.getElementById('acadFacRows').innerHTML = `
+        ${infoRow('fa-chalkboard',    'Total Land Area',       inf.totalLand)}
+        ${infoRow('fa-building',      'Built-up Area',         inf.builtUpArea)}
+        ${infoRow('fa-chalkboard',    'Classrooms',            inf.classrooms)}
+        ${infoRow('fa-table-cells',   'Tutorial Rooms',        inf.tutorialRooms)}
+        ${infoRow('fa-pencil-ruler',  'Drawing Halls',         inf.drawingHalls)}
+        ${infoRow('fa-microscope',    'Engineering Labs',      inf.engineeringLabs)}
+        ${infoRow('fa-desktop',       'Computer Labs',         inf.computerLabs)}
+        ${infoRow('fa-flask',         'Research Labs',         inf.researchLabs)}
+        ${infoRow('fa-screwdriver-wrench', 'Workshop Area',    inf.workshopArea)}
+        ${infoRow('fa-chalkboard-user','Seminar Halls',        inf.seminarHalls)}
+        ${infoRow('fa-people-group',  'Conference Rooms',      inf.conferenceRooms)}
+        ${infoRow('fa-book',          'e-Journals',            fmt(inf.eJournals))}
+    `;
+
+    document.getElementById('amenitiesRows').innerHTML = `
+        ${infoRow('fa-futbol',        'Sports Ground',         boolBadge(inf.sportsGround))}
+        ${infoRow('fa-table-tennis-paddle-ball','Indoor Sports', boolBadge(inf.indoorSports))}
+        ${infoRow('fa-utensils',      'Cafeteria / Canteen',   boolBadge(inf.cafeteria))}
+        ${infoRow('fa-kit-medical',   'Medical Room',          boolBadge(inf.medicalRoom))}
+        ${infoRow('fa-wifi',          'Internet Bandwidth',    inf.internetBandwidth)}
+        ${infoRow('fa-plug',          'Generator Backup',      inf.generatorBackup)}
+        ${infoRow('fa-camera',        'CCTV Cameras',          inf.cctvCount)}
+        ${infoRow('fa-bed',           'Boys Hostel Capacity',  inf.hostelBoys)}
+        ${infoRow('fa-bed',           'Girls Hostel Capacity', inf.hostelGirls)}
+    `;
+}
+
+function renderPrograms(p) {
+    const programs = p.programs || [];
+    document.getElementById('programsBody').innerHTML = programs.length === 0
+        ? `<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:30px;">No programs found.</td></tr>`
+        : programs.map(pr => `
+            <tr>
+                <td><span class="code-badge">${pr.code}</span></td>
+                <td style="font-weight:600;color:var(--text-primary);">${pr.name}</td>
+                <td>${pr.duration}</td>
+                <td>${pr.intake} seats</td>
+                <td style="color:var(--success);font-weight:600;">${fmtRs(pr.annualFee)}</td>
+                <td>${pr.approvedYear || '—'}</td>
+                <td>${statusPill(pr.approvalStatus)}</td>
+            </tr>
+        `).join('');
+}
+
+function renderFaculty(p, filterDept = 'all') {
+    const faculty = (p.faculty || []).filter(f => filterDept === 'all' || f.department === filterDept);
+
+    // Department filter chips
+    const depts = ['all', ...new Set((p.faculty || []).map(f => f.department))];
+    document.getElementById('deptFilters').innerHTML = depts.map(d => `
+        <button class="doc-filter-btn ${d === filterDept ? 'active' : ''}"
+                onclick="renderFaculty(window.__instProfile, '${d}')">
+            ${d === 'all' ? 'All Departments' : d}
+        </button>
+    `).join('');
+
+    document.getElementById('facultyGrid').innerHTML = faculty.length === 0
+        ? `<p style="color:var(--text-muted);padding:20px;text-align:center;">No faculty found for this filter.</p>`
+        : faculty.map(f => `
+            <div class="faculty-card">
+                <div class="f-avatar"><i class="fa-solid fa-user-tie"></i></div>
+                <div class="f-info">
+                    <div class="f-name">${f.name}</div>
+                    <div class="f-desig">${f.designation}</div>
+                    <div class="f-dept"><i class="fa-solid fa-building-user" style="margin-right:4px;"></i>${f.department}</div>
+                    <div class="f-qual"><i class="fa-solid fa-graduation-cap" style="margin-right:4px;color:var(--text-muted);"></i>${f.qualification}</div>
+                    <div class="f-tags">
+                        <span class="f-tag exp"><i class="fa-solid fa-clock"></i> ${f.experience}</span>
+                        <span class="f-tag"><i class="fa-solid fa-book"></i> ${f.publications} Papers</span>
+                    </div>
+                    <div style="margin-top: 4px;">
+                        ${f.aadhaarVerified 
+                            ? `<span class="faculty-verify-badge verified" title="Verified Biometrics and Identity"><i class="fa-solid fa-circle-check"></i> Aadhaar Signed</span>`
+                            : `<span class="faculty-verify-badge pending" onclick="triggerAadhaarVerification('${f.name}')" title="Click to e-Sign identity"><i class="fa-solid fa-fingerprint"></i> Verify Aadhaar</span>`
+                        }
+                    </div>
+                </div>
+            </div>
+        `).join('');
+}
+
+function renderDocuments(p, filterCat = 'all') {
+    const docs = (p.documents || []).filter(d => filterCat === 'all' || d.category === filterCat);
+    const cats  = ['all', ...new Set((p.documents || []).map(d => d.category))];
+
+    document.getElementById('docFilters').innerHTML = cats.map(c => `
+        <button class="doc-filter-btn ${c === filterCat ? 'active' : ''}"
+                onclick="renderDocuments(window.__instProfile, '${c}')">
+            ${c === 'all' ? 'All Categories' : c}
+        </button>
+    `).join('');
+
+    const pct = (conf) => parseFloat(conf) || 0;
+
+    document.getElementById('docList').innerHTML = docs.length === 0
+        ? `<p style="color:var(--text-muted);padding:20px;text-align:center;">No documents found for this category.</p>`
+        : docs.map(d => `
+            <div class="doc-card">
+                <i class="fa-solid fa-file-pdf doc-icon"></i>
+                <div class="doc-details">
+                    <div class="doc-name">${d.name}</div>
+                    <div class="doc-meta">
+                        <span><i class="fa-solid fa-tag"></i>${d.category}</span>
+                        <span><i class="fa-solid fa-calendar"></i>${d.uploadDate}</span>
+                        <span><i class="fa-solid fa-weight-hanging"></i>${d.size}</span>
+                    </div>
+                    <div class="confidence-bar-wrap">
+                        <div class="confidence-bar-bg">
+                            <div class="confidence-bar-fill" style="width:${pct(d.confidence)}%"></div>
+                        </div>
+                        <span class="confidence-pct">${d.confidence}</span>
+                    </div>
+                </div>
+                <span class="ocr-badge ${d.ocrStatus === 'Verified' ? 'ocr-verified' : 'ocr-scanning'}">
+                    <i class="fa-solid ${d.ocrStatus === 'Verified' ? 'fa-circle-check' : 'fa-spinner fa-spin'}"></i>
+                    ${d.ocrStatus}
+                </span>
+            </div>
+        `).join('');
+}
+
+function renderFinances(p) {
+    const fin = p.finances || {};
+    const fees = fin.processingFees || [];
+
+    document.getElementById('finSummary').innerHTML = `
+        <div class="fin-card">
+            <div class="fin-num">${fmtRs(fin.totalPaid)}</div>
+            <div class="fin-lbl">Total Fees Paid</div>
+        </div>
+        <div class="fin-card">
+            <div class="fin-num" style="color:${fin.pendingFees > 0 ? 'var(--pending)' : 'var(--success)'}">
+                ${fmtRs(fin.pendingFees)}
+            </div>
+            <div class="fin-lbl">Pending Fees</div>
+        </div>
+        <div class="fin-card">
+            <div class="fin-num" style="color:var(--primary);">${fees.length}</div>
+            <div class="fin-lbl">Transactions</div>
+        </div>
+    `;
+
+    document.getElementById('txnList').innerHTML = fees.length === 0
+        ? `<p style="color:var(--text-muted);padding:20px;text-align:center;">No transactions found.</p>`
+        : fees.map(tx => `
+            <div class="txn-row">
+                <div class="txn-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                <div class="txn-info">
+                    <div class="txn-id">TXN: ${tx.txnId} &nbsp;·&nbsp; App: ${tx.applicationId}</div>
+                    <div class="txn-meta">${tx.date} · Via ${tx.mode}</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+                    <div class="txn-amount">${fmtRs(tx.amount)}</div>
+                    <span class="txn-status">${tx.status}</span>
+                </div>
+            </div>
+        `).join('');
+
+    document.getElementById('bankInfo').innerHTML = [
+        { icon: 'fa-landmark',      label: 'Bank Name',       value: fin.bankName },
+        { icon: 'fa-location-dot',  label: 'Branch',          value: fin.bankBranch },
+        { icon: 'fa-credit-card',   label: 'Account No.',     value: fin.accountNumber },
+        { icon: 'fa-barcode',       label: 'IFSC Code',       value: fin.ifscCode },
+    ].map(b => `
+        <div class="bank-chip">
+            <i class="fa-solid ${b.icon}"></i>
+            <span style="color:var(--text-muted);font-size:0.74rem;margin-right:4px;">${b.label}:</span>
+            <span>${b.value || '—'}</span>
+        </div>
+    `).join('');
+}
+
+function renderAuditLog(p) {
+    const log = p.auditLog || [];
+    const catMap = {
+        auth: 'auth', submission: 'submission',
+        payment: 'payment', ai: 'ai', review: 'review', decision: 'decision'
+    };
+    document.getElementById('auditTimeline').innerHTML = log.length === 0
+        ? `<p style="color:var(--text-muted);padding:20px;text-align:center;">No audit records found.</p>`
+        : [...log].reverse().map(entry => `
+            <div class="audit-item ${catMap[entry.category] || 'auth'}">
+                <div class="audit-card">
+                    <div class="audit-header">
+                        <div>
+                            <span class="audit-cat cat-${entry.category}">${entry.category.toUpperCase()}</span>
+                            <div class="audit-action">${entry.action}</div>
+                        </div>
+                        <div class="audit-time"><i class="fa-regular fa-calendar"></i> ${entry.date} &nbsp; <i class="fa-regular fa-clock"></i> ${entry.time}</div>
+                    </div>
+                    <div class="audit-by"><i class="fa-solid fa-user" style="margin-right:5px;"></i>${entry.by}</div>
+                    <div class="audit-note">${entry.note}</div>
+                </div>
+            </div>
+        `).join('');
+}
+
+// ── Advanced Simulations Controllers ──────────────────────────────
+let currentAadhaarFaculty = null;
+let currentAadhaarOtp = null;
+
+// 1. Compliance Auditor
+function updateAuditor(p, apps) {
+    const container = document.getElementById('complianceAuditorContainer');
+    if (!container) return;
+
+    const programs = p.programs || [];
+    const totalIntake = programs.reduce((sum, pr) => sum + (parseInt(pr.intake) || 0), 0);
+
+    const requiredFaculty = Math.ceil(totalIntake / 20) || 15;
+    const actualFaculty = p.faculty?.length || 0;
+    const deficit = requiredFaculty - actualFaculty;
+
+    if (deficit > 0) {
+        container.innerHTML = `
+            <div class="auditor-warning-card">
+                <div>
+                    <h3><i class="fa-solid fa-triangle-exclamation" style="color:var(--pending);"></i> AICTE Teacher-Student Ratio Alert</h3>
+                    <p>
+                        Based on your student intake of <strong>${totalIntake}</strong>, the AICTE 1:20 norm requires <strong>${requiredFaculty}</strong> faculty members. 
+                        Your roster currently lists <strong>${actualFaculty}</strong> (${deficit} deficient).
+                    </p>
+                </div>
+                <button class="btn-primary" onclick="triggerAutoFixRoster()" style="font-size: 0.8rem; padding: 8px 16px;">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Fix Roster Deficiency
+                </button>
+            </div>
+        `;
+    } else {
+        container.innerHTML = `
+            <div class="auditor-warning-card compliant">
+                <div>
+                    <h3><i class="fa-solid fa-circle-check" style="color:var(--success);"></i> AICTE Teacher-Student Ratio Compliant</h3>
+                    <p>
+                        Your registered roster of <strong>${actualFaculty}</strong> teachers meets the AICTE 1:20 faculty-to-student norm for an intake capacity of <strong>${totalIntake}</strong>.
+                    </p>
+                </div>
+                <span class="hbadge hb-green" style="font-size:0.75rem;"><i class="fa-solid fa-check"></i> Ratio OK</span>
+            </div>
+        `;
+    }
+}
+
+// Auto-Fix Roster Deficiency
+async function triggerAutoFixRoster() {
+    const p = window.__instProfile;
+    if (!p) return;
+
+    const programs = p.programs || [];
+    const totalIntake = programs.reduce((sum, pr) => sum + (parseInt(pr.intake) || 0), 0);
+    const requiredFaculty = Math.ceil(totalIntake / 20) || 15;
+    const currentCount = p.faculty?.length || 0;
+    const deficit = requiredFaculty - currentCount;
+
+    if (deficit <= 0) return;
+
+    const mockNames = [
+        "Dr. S. R. Srinivasa", "Dr. Shalini Mukherji", "Prof. Amit Verma", "Prof. Nandini Sundaram",
+        "Dr. Vikram Batra", "Dr. Kavita Pillai", "Prof. R. K. Goel", "Dr. Manoj Bajpayee",
+        "Prof. Divya Teja", "Dr. Hari Prasad", "Prof. N. Subramanian", "Dr. Preeti Shenoy",
+        "Prof. Arun Lal", "Dr. Neha Kakkar", "Prof. K. Viswanath", "Dr. Sneha George"
+    ];
+    const mockDepts = ["CSE", "ECE", "MECH", "CIVIL", "EEE", "IT"];
+    const mockQuals = ["Ph.D. Computer Science", "Ph.D. VLSI Design", "M.Tech Networks", "Ph.D. Power Systems", "M.Tech Splicing", "Ph.D. Information Security"];
+
+    const newFaculty = [...(p.faculty || [])];
+
+    for (let i = 0; i < deficit; i++) {
+        const name = mockNames[i % mockNames.length] + " (" + (currentCount + i + 1) + ")";
+        const dept = mockDepts[i % mockDepts.length];
+        const qualification = mockQuals[i % mockQuals.length];
+        
+        newFaculty.push({
+            name,
+            designation: "Assistant Professor",
+            department: dept,
+            qualification,
+            experience: (5 + (i * 2) % 15) + " Years",
+            publications: (2 + i % 12),
+            aadhaarVerified: true
+        });
+    }
+
+    p.faculty = newFaculty;
+
+    try {
+        const res = await fetch(`/api/institution/profile?email=${encodeURIComponent(p.email)}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(p)
+        });
+
+        if (res.ok) {
+            toast(`Successfully registered ${deficit} mock faculty members to resolve compliance deficiency!`);
+            await loadPage();
+        } else {
+            toast('Failed to update roster on server.', 'error');
+        }
+    } catch(err) {
+        console.error("Auto-fix error:", err);
+        toast('Error sending updates to server.', 'error');
+    }
+}
+
+// 2. Interactive CSS 3D Campus Blueprint
+function render3DMap(p) {
+    const grid = document.getElementById('isometricGrid');
+    if (!grid) return;
+
+    const buildings = [
+        { id: 'block-a', name: 'Block A (Administration)', desc: 'Main admin office, registry chambers, and board rooms.', x: 40, y: 30, w: 80, l: 80, h: 90, area: '7,200', status: 'Compliant' },
+        { id: 'block-b', name: 'Block B (Academic Wings)', desc: 'Lecture halls, classrooms, tutorial chambers, drawing halls.', x: 160, y: 30, w: 100, l: 140, h: 110, area: '14,000', status: 'Compliant' },
+        { id: 'block-c', name: 'Block C (Labs & Tech Hub)', desc: 'Computer centers, engineering labs, and research wings.', x: 300, y: 30, w: 90, l: 110, h: 100, area: '9,900', status: 'Compliant' },
+        { id: 'block-d', name: 'Block D (Hostels Roster)', desc: 'Student residency halls, catering mess, and common rooms.', x: 80, y: 160, w: 160, l: 70, h: 70, area: '11,200', status: 'Compliant' },
+        { id: 'block-e', name: 'Block E (Library & Sports)', desc: 'Central inventory library, study halls, and indoor sports area.', x: 280, y: 170, w: 120, l: 80, h: 80, area: '9,600', status: 'Compliant' }
+    ];
+
+    grid.innerHTML = '';
+
+    buildings.forEach(b => {
+        const el = document.createElement('div');
+        el.className = 'building-3d';
+        el.style.left = `${b.x}px`;
+        el.style.top = `${b.y}px`;
+        el.style.width = `${b.w}px`;
+        el.style.height = `${b.l}px`;
+        
+        el.innerHTML = `
+            <div class="building-face top" style="width: ${b.w}px; height: ${b.l}px; transform: translateZ(${b.h}px);"></div>
+            <div class="building-face front" style="width: ${b.w}px; height: ${b.h}px; transform: translateZ(${b.h}px) rotateX(-90deg); transform-origin: top; background: rgba(0,242,254,0.22);">${b.id.replace('block-', 'Block ')}</div>
+            <div class="building-face side" style="width: ${b.h}px; height: ${b.l}px; transform: translateZ(${b.h}px) rotateY(90deg); transform-origin: left; left: ${b.w}px;"></div>
+        `;
+
+        el.addEventListener('mouseenter', () => {
+            const tooltip = document.getElementById('mapTooltip');
+            document.getElementById('tooltipTitle').innerText = b.name;
+            document.getElementById('tooltipDesc').innerText = b.desc;
+            document.getElementById('tooltipArea').innerText = `${b.area} sq m`;
+            document.getElementById('tooltipStatus').innerText = b.status;
+            tooltip.classList.add('active');
+        });
+
+        el.addEventListener('mouseleave', () => {
+            document.getElementById('mapTooltip').classList.remove('active');
+        });
+
+        grid.appendChild(el);
+    });
+}
+
+// 3. Aadhaar Verification Modal Handler
+window.triggerAadhaarVerification = function(facultyName) {
+    const modal = document.getElementById('aadhaarModal');
+    const nameSpan = document.getElementById('aadhaarFacultyName');
+    const otpInput = document.getElementById('aadhaarOtp');
+    const notification = document.getElementById('simulatedNotificationHub');
+    
+    if (!modal || !nameSpan || !otpInput) return;
+
+    currentAadhaarFaculty = facultyName;
+    nameSpan.innerText = facultyName;
+    otpInput.value = '';
+
+    currentAadhaarOtp = Math.floor(100000 + Math.random() * 900000).toString();
+
+    modal.classList.add('active');
+    otpInput.focus();
+
+    if (notification) {
+        document.getElementById('notificationText').innerHTML = `Govt UIDAI SMS code: Aadhaar verification code for <strong>${facultyName}</strong> is <strong style="font-size: 0.95rem; letter-spacing: 1px; color: var(--primary);">${currentAadhaarOtp}</strong>.`;
+        notification.style.top = '24px';
+        setTimeout(() => {
+            notification.style.top = '-110px';
+        }, 15000);
+    }
+};
+
+// Bind Aadhaar Verification events once
+document.addEventListener('DOMContentLoaded', () => {
+    const closeBtn = document.getElementById('closeAadhaarModal');
+    const form = document.getElementById('aadhaarForm');
+    const modal = document.getElementById('aadhaarModal');
+    const notification = document.getElementById('simulatedNotificationHub');
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+            if (notification) notification.style.top = '-110px';
+        });
+    }
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const otpVal = document.getElementById('aadhaarOtp').value;
+
+            if (otpVal !== currentAadhaarOtp) {
+                alert('Invalid Aadhaar verification code. Please check the notification banner.');
+                return;
+            }
+
+            const p = window.__instProfile;
+            if (!p) return;
+
+            const idx = p.faculty.findIndex(f => f.name === currentAadhaarFaculty);
+            if (idx !== -1) {
+                p.faculty[idx].aadhaarVerified = true;
+            }
+
+            try {
+                const res = await fetch(`/api/institution/profile?email=${encodeURIComponent(p.email)}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(p)
+                });
+
+                if (res.ok) {
+                    toast(`Aadhaar e-Signature verified for ${currentAadhaarFaculty}! Identity locked.`);
+                    modal.classList.remove('active');
+                    if (notification) notification.style.top = '-110px';
+                    await loadPage();
+                } else {
+                    toast('Failed to save Aadhaar status to database.', 'error');
+                }
+            } catch(err) {
+                console.error("Aadhaar save error:", err);
+                toast('Error saving verified status.', 'error');
+            }
+        });
+    }
+});
+
+// ── Main Load ─────────────────────────────────────────────────────
+async function loadPage() {
+    const user = getUser();
+
+    if (!user) {
+        document.getElementById('authGuard').style.display = 'flex';
+        return;
+    }
+
+    document.getElementById('instContent').style.display = 'block';
+
+    // Update header
+    document.getElementById('headerBtns').innerHTML = `
+        <span style="color:var(--text-secondary);font-size:0.82rem;margin-right:6px;">
+            <i class="fa-solid fa-user-circle" style="color:var(--primary);"></i> ${user.email}
+        </span>
+        <button id="logoutBtn" onclick="logout()"
+            style="padding:8px 18px;background:rgba(255,255,255,0.05);border:1px solid var(--border-color);
+            border-radius:8px;color:var(--text-secondary);font-family:'Poppins',sans-serif;
+            cursor:pointer;font-size:0.82rem;transition:all 0.3s;">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    `;
+
+    // Fetch institution profile
+    let profile = {};
+    try {
+        const res = await fetch(`/api/institution/profile?email=${encodeURIComponent(user.email)}`);
+        if (res.ok) profile = await res.json();
+    } catch(e) { toast('Could not load institution profile from server.', 'error'); }
+
+    // Fetch applications
+    let apps = [];
+    try {
+        const params = user.role === 'institution'
+            ? `?email=${encodeURIComponent(user.email)}&role=institution` : '';
+        const res = await fetch(`/api/applications${params}`);
+        if (res.ok) apps = await res.json();
+    } catch(e) { console.warn('Applications fetch failed.'); }
+
+    // Expose profile for callbacks
+    window.__instProfile = profile;
+
+    // Render all sections
+    renderHero(profile, apps);
+    renderKPI(profile, apps);
+    renderOverview(profile, apps);
+    renderProfile(profile);
+    renderInfrastructure(profile);
+    renderPrograms(profile);
+    renderFaculty(profile);
+    renderDocuments(profile);
+    renderFinances(profile);
+    renderAuditLog(profile);
+
+    // Advanced Simulations
+    updateAuditor(profile, apps);
+    render3DMap(profile);
+
+    toast('Institution data loaded successfully!');
+}
+
+function logout() {
+    localStorage.removeItem('currentUser');
+    window.location.href = 'login.html';
+}
+
+// Bootstrap
+loadPage();
+</script>
+</body>
+</html>
